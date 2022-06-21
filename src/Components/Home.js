@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddTaskBar from "./AddTaskBar";
 import SideBar from "./SideBar";
 import TaskView from "./TaskView";
+import {useNavigate} from 'react-router-dom'
 
 const Home = (props) => {
+  const {loggedIn} = props
   const [boards, setBoards] = useState([
     {
       title: "Platform Launch",
@@ -19,8 +21,15 @@ const Home = (props) => {
     { title: "Marketing Plan" },
     { title: "Roadmap" },
   ]);
-
+  const navigate = useNavigate();
   const [selectedBoard, setSelectedBoard] = useState(boards[0].title);
+  
+  useEffect(()=>{
+    if(!loggedIn){
+      navigate('/login', {replace: true})
+    }
+  }, [])
+
 
   const addBoardsHandler = (e) => {
     e.preventDefault();

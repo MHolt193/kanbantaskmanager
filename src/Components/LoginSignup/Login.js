@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Login = (props) =>{
     return(
@@ -7,7 +8,7 @@ const Login = (props) =>{
                 <input type='email' placeholder='Email' />
                 <input type='password' placeholder='Password' />
                 <button type='submit'>Login</button>
-                <p>Need to register? <a href='#'>Register</a></p> 
+                <p>Need to register? <Link to='/signup'>Register</Link></p> 
             </form>
         </div>
     )
