@@ -3,7 +3,7 @@ import AddTaskBar from "./AddTaskBar";
 import SideBar from "./SideBar";
 import TaskView from "./TaskView";
 
-const Home = () => {
+const Home = (props) => {
   const [boards, setBoards] = useState([
     {
       title: "Platform Launch",
