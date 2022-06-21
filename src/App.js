@@ -6,19 +6,19 @@ import Home from "./Components/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home loggedIn={loggedIn} />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="login"
-          element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          element={<Login />}
         />
         <Route
           path="signup"
-          element={<Signup loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          element={<Signup/>}
         />
       </Routes>
     </Router>

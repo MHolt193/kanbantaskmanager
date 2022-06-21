@@ -2,34 +2,42 @@ import React, { useState, useEffect } from "react";
 import AddTaskBar from "./AddTaskBar";
 import SideBar from "./SideBar";
 import TaskView from "./TaskView";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Home = (props) => {
-  const {loggedIn} = props
-  const [boards, setBoards] = useState([
-    {
-      title: "Platform Launch",
-      todo: [
-        {
-          title: "Build UI for onboarding flow",
-          description: "",
-          subtasks: [],
-          status: "todo",
-        },
-      ],
-    },
-    { title: "Marketing Plan" },
-    { title: "Roadmap" },
-  ]);
+const Home = () => {
+  const [boards, setBoards] = useState([]);
   const navigate = useNavigate();
-  const [selectedBoard, setSelectedBoard] = useState(boards[0].title);
-  
-  useEffect(()=>{
-    if(!loggedIn){
-      navigate('/login', {replace: true})
-    }
-  }, [])
+  const [selectedBoard, setSelectedBoard] = useState('');
+  const [selectedBoardId, setSelectedBoardId] = useState('')
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("user");
+    if (token === null) {
+      navigate("/login", { replace: true });
+    }
+    const getBoards = async () => {
+      await axios
+        .get("http://192.168.0.64:5000/api/boards", {
+          headers: {
+            'Authorization': `Bearer ${JSON.parse(token)}`,
+          },
+          body: {
+            'user': userId,
+          }
+        })
+        .then((response) => {
+          setBoards(response.data);
+          setSelectedBoard(response.data[0].title)
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getBoards();
+  }, []);
 
   const addBoardsHandler = (e) => {
     e.preventDefault();
@@ -37,18 +45,23 @@ const Home = (props) => {
 
   const selectBoardHandler = (e) => {
     setSelectedBoard(e.target.innerText);
+    setSelectedBoardId(e.target.id);
   };
-  const addTaskHandler = (e) =>{
+  const addTaskHandler = (e) => {
     e.preventDefault();
-    const form = e.target
+    const form = e.target;
     const formElements = form.elements;
+  };
 
+  const logOutHandler = () => {
+    localStorage.removeItem("token");
+    navigate("/login", { replace: true });
   };
 
   return (
     <>
       <SideBar selectBoardHandler={selectBoardHandler} boards={boards} />
-      <AddTaskBar selectedBoard={selectedBoard} />
+      <AddTaskBar selectedBoard={selectedBoard} logOutHandler={logOutHandler} />
       <TaskView boards={boards} selectedBoard={selectedBoard} />
     </>
   );

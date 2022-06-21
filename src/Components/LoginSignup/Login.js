@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-const Login = (props) =>{
+const Login = () =>{
+
+    const navigate = useNavigate();
 
     const loginSubmitHandler = async (event) =>{
         event.preventDefault();
@@ -11,7 +14,17 @@ const Login = (props) =>{
             email: form.email.value,
             password: form.password.value
         }
-        console.log(formData);
+       await axios.post('http://192.168.0.64:5000/api/users/login', formData)
+                    .then((response)=>{
+                        const data = response.data
+                        localStorage.setItem('token', JSON.stringify(data.token) )
+                        localStorage.setItem('user', JSON.stringify(data._id))
+                        if(response.status === 200){
+                            navigate('/', {replace: true})   
+                        }
+                    }).catch((error)=>{
+                        console.log(error)
+                    })
     }
 
     return(

@@ -10,7 +10,7 @@ const SideBar = (props) => {
         <p>All Boards ({props.boards.length})</p>
         <ul>
           {props.boards.map((board) => {
-            return <li onClick={props.selectBoardHandler}>{board.title}</li>;
+            return <li onClick={props.selectBoardHandler} id={board._id} key={board._id}>{board.title}</li>;
           })}
           <li>+Create New Board</li>
         </ul>
