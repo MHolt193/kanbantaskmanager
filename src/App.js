@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Login from './Components/LoginSignup/Login'
 import "./App.css";
 import Home from "./Components/Home";
-import { Router, Route } from "react-router";
+import {BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 
-function App() {
+const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-
-  const requireAuth = (nextState, replace) => {
-    if (!loggedIn) {
-      replace({ pathname: "login" });
+ const navigate = useNavigate();
+  useEffect(()=>{
+    if(!loggedIn){
+     return navigate('/login')
     }
-  };
+  },[loggedIn])
 
   return (
     <Router>
-      <Route path="/">
-        <Route path="home" onEnter={requireAuth}>
-          <Home loggedIn={loggedIn} />
-        </Route>
-        <Route path="login">
-          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-        </Route>
-      </Route>
+      <Routes>
+        <Route path="/" element={ <Home loggedIn={loggedIn} />} />
+        <Route path="login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}/>
+      </Routes>
     </Router>
   );
 }
