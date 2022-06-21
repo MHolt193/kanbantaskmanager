@@ -8,8 +8,8 @@ import axios from "axios";
 const Home = () => {
   const [boards, setBoards] = useState([]);
   const navigate = useNavigate();
-  const [selectedBoard, setSelectedBoard] = useState('');
-  const [selectedBoardId, setSelectedBoardId] = useState('')
+  const [selectedBoard, setSelectedBoard] = useState("");
+  const [selectedBoardId, setSelectedBoardId] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,16 +21,15 @@ const Home = () => {
       await axios
         .get("http://192.168.0.64:5000/api/boards", {
           headers: {
-            'Authorization': `Bearer ${JSON.parse(token)}`,
+            Authorization: `Bearer ${JSON.parse(token)}`,
           },
           body: {
-            'user': userId,
-          }
+            user: userId,
+          },
         })
         .then((response) => {
           setBoards(response.data);
-          setSelectedBoard(response.data[0].title)
-          console.log(response.data)
+          setSelectedBoard(response.data[0].title);
         })
         .catch((error) => {
           console.log(error);
