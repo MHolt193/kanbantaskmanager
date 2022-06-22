@@ -4,19 +4,18 @@ import SideBar from "./SideBar";
 import TaskView from "./TaskView";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import BoardModal from './Modals/BoardModal'
+import BoardModal from "./Modals/BoardModal";
 
 const Home = () => {
-
   //STATE
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState("");
   const [selectedBoardId, setSelectedBoardId] = useState("");
-  const [newBoardModal, setNewBoardModal] = useState(false)
-  const [newTaskModal, setNewTaskModal] = useState(false)
-  const [viewTaskModal, setViewTaskModal]=useState(false)
+  const [newBoardModal, setNewBoardModal] = useState(false);
+  const [newTaskModal, setNewTaskModal] = useState(false);
+  const [viewTaskModal, setViewTaskModal] = useState(false);
 
-//First load useEffect
+  //First load useEffect
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -45,10 +44,10 @@ const Home = () => {
     getBoards();
   }, []);
 
-  
   //Handlers
   const addBoardsHandler = (e) => {
     e.preventDefault();
+    setNewBoardModal((prev) => !prev);
   };
 
   const selectBoardHandler = (e) => {
@@ -68,8 +67,18 @@ const Home = () => {
 
   return (
     <>
-      {newBoardModal && <BoardModal />}
-      <SideBar selectBoardHandler={selectBoardHandler} boards={boards} />
+      {newBoardModal && (
+        <BoardModal
+          setNewBoardModal={setNewBoardModal}
+          addBoardsHandler={addBoardsHandler}
+          setBoards={setBoards}
+        />
+      )}
+      <SideBar
+        addBoardsHandler={addBoardsHandler}
+        selectBoardHandler={selectBoardHandler}
+        boards={boards}
+      />
       <AddTaskBar selectedBoard={selectedBoard} logOutHandler={logOutHandler} />
       <TaskView boards={boards} selectedBoard={selectedBoard} />
     </>

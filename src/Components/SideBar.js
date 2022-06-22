@@ -12,7 +12,7 @@ const SideBar = (props) => {
           {props.boards.map((board) => {
             return <li onClick={props.selectBoardHandler} id={board._id} key={board._id}>{board.title}</li>;
           })}
-          <li>+Create New Board</li>
+          <li onClick={props.addBoardsHandler}>+Create New Board</li>
         </ul>
       </div>
       <LightDarkSwitch />

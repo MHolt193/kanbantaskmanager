@@ -14,8 +14,49 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(57, 57, 77);
+    background-color: rgb(55, 55, 68);
     height: 250px;
     width: 250px;
     border-radius: 10px;
+}
+.closeBtn{
+    border-radius: 5px;
+    background: none;
+    color: grey;
+    position: relative;
+    top: -110px;
+    right: -100px;
+    border: none;
+    font-weight: bold;
+    font-size: 25px;
+}
+.closeBtn:hover{
+    text-decoration: underline;
+}
+.title{
+    position: relative;
+    top:-60px;
+    left: -40px;
+    color:rgb(209, 209, 209);
+    font-size: 22px;
+}
+.input{
+    height: 30px;
+    width: 80%;
+    border-radius: 5px;
+    color:rgb(209,209,209);
+    border: 1px solid rgb(105, 105, 105);
+    background-color:rgb(55, 55, 68) ;
+    position: relative;
+    top: -55px;
+}
+.submitBtn{
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(93, 113, 177);
+    color: rgb(209,209,209);
+    position: relative;
+    top: -40px;
 }
