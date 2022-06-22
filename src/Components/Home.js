@@ -5,6 +5,7 @@ import TaskView from "./TaskView";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BoardModal from "./Modals/BoardModal";
+import AddTaskModal from "./Modals/AddTaskModal";
 
 const Home = () => {
   //STATE
@@ -72,6 +73,12 @@ const Home = () => {
           setNewBoardModal={setNewBoardModal}
           addBoardsHandler={addBoardsHandler}
           setBoards={setBoards}
+        />
+      )}
+      {newTaskModal && (
+        <AddTaskModal
+          setNewTaskModal={setNewTaskModal}
+          setSelectedBoardId={selectedBoardId}
         />
       )}
       <SideBar
