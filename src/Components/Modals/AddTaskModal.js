@@ -6,9 +6,12 @@ const AddTaskModal = (props) => {
 
   return (
     <div className={classes.modalContainer}>
-      <div>
+      <div className={classes.modal}>
+        <div className={classes.titleContainer}>
         <h2>Add New Task</h2>
-        <form>
+        <button onClick={props.addTaskHandler}>X</button>
+        </div>
+        <form className={classes.form}>
           <div>
             <label for="taskTitle">Title</label>
             <input type="text" id="taskTitle" name="taskTitle" />

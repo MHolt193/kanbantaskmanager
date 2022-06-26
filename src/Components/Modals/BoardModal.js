@@ -11,7 +11,7 @@ const BoardModal = (props) => {
     };
     const token = localStorage.getItem("token");
     axios
-      .post("http://192.168.0.64:5000/api/boards", formData, {
+      .post("http://192.168.0.57:5000/api/boards", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },

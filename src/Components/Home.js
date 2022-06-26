@@ -26,7 +26,7 @@ const Home = () => {
     }
     const getBoards = async () => {
       await axios
-        .get("http://192.168.0.64:5000/api/boards", {
+        .get("http://192.168.0.57:5000/api/boards", {
           headers: {
             Authorization: `Bearer ${JSON.parse(token)}`,
           },
@@ -56,9 +56,7 @@ const Home = () => {
     setSelectedBoardId(e.target.id);
   };
   const addTaskHandler = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formElements = form.elements;
+    setNewTaskModal((prev) => !prev);
   };
 
   const logOutHandler = () => {
@@ -79,6 +77,7 @@ const Home = () => {
         <AddTaskModal
           setNewTaskModal={setNewTaskModal}
           setSelectedBoardId={selectedBoardId}
+          addTaskHandler={addTaskHandler}
         />
       )}
       <SideBar
@@ -86,7 +85,7 @@ const Home = () => {
         selectBoardHandler={selectBoardHandler}
         boards={boards}
       />
-      <AddTaskBar selectedBoard={selectedBoard} logOutHandler={logOutHandler} />
+      <AddTaskBar selectedBoard={selectedBoard} logOutHandler={logOutHandler} addTaskHandler={addTaskHandler} />
       <TaskView boards={boards} selectedBoard={selectedBoard} />
     </>
   );
