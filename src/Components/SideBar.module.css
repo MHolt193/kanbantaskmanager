@@ -5,7 +5,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: left;
-    border: 1px solid black;
+    background-color: #2C2C38;
+    border: 2px solid #32323E;
+    border-bottom: none;
+    color: #EEEFF2;
     position: absolute;
     top: 0;
 }

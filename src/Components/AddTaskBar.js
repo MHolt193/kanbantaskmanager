@@ -7,8 +7,10 @@ const AddTaskBar = (props) =>{
     return(
         <div className={classes.container}>
             <h2>{props.selectedBoard}</h2>
-            <button onClick={props.addTaskHandler}>+Add New Task</button>
+            <div>
+            <button onClick={props.addTaskHandler} className={classes.newTaskBtn}>+Add New Task</button>
             <button onClick={props.logOutHandler}>Log Out</button>
+            </div>
         </div>
     )
 }

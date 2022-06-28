@@ -1,10 +1,11 @@
 import React from 'react'
+import classes from './TaskView.module.css'
 
 const TaskView = (props) =>{
     
 
     return(
-        <div>
+        <div className={classes.container}>
             <p>todo</p>
            {props.boards?.map((board) => { 
             let title = ''          

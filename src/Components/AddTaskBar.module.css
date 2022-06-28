@@ -5,7 +5,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 75vw;
-    height: 100px;
-    border: 1px solid black
+    width: 79vw;
+    height: 10vh;
+    background-color: #2C2C38;
+    border: 2px solid #32323E;
+    border-top: none;
+    border-bottom: none;
+    color: #EEEFF2;
+}
+.newTaskBtn {
+    border-radius: 50px;
+    background-color: #635EC2;
+    border: none;
+    height: 40px;
+    width: 150px;
+    color: #EEEFF2;
+    font-size: 14px;
+    font-weight: bold;
 }
