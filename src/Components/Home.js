@@ -11,10 +11,11 @@ const Home = () => {
   //STATE
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState("");
-  const [selectedBoardId, setSelectedBoardId] = useState("");
+  const [selectedBoardId, setSelectedBoardId] = useState('');
   const [newBoardModal, setNewBoardModal] = useState(false);
   const [newTaskModal, setNewTaskModal] = useState(false);
   const [viewTaskModal, setViewTaskModal] = useState(false);
+  const [taskList, setTaskList] = useState([]);
 
   //First load useEffect
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Home = () => {
     }
     const getBoards = async () => {
       await axios
-        .get("http://192.168.0.57:5000/api/boards", {
+        .get("http://192.168.0.64:5000/api/boards", {
           headers: {
             Authorization: `Bearer ${JSON.parse(token)}`,
           },
@@ -37,6 +38,7 @@ const Home = () => {
         .then((response) => {
           setBoards(response.data);
           setSelectedBoard(response.data[0].title);
+          setSelectedBoardId(response.data[0]._id)
         })
         .catch((error) => {
           console.log(error);
@@ -78,6 +80,7 @@ const Home = () => {
           setNewTaskModal={setNewTaskModal}
           selectedBoardId={selectedBoardId}
           addTaskHandler={addTaskHandler}
+          setTaskList={setTaskList}
         />
       )}
       <SideBar
@@ -86,7 +89,7 @@ const Home = () => {
         boards={boards}
       />
       <AddTaskBar  selectedBoard={selectedBoard} logOutHandler={logOutHandler} addTaskHandler={addTaskHandler} />
-      <TaskView boards={boards} selectedBoard={selectedBoard} />
+      {selectedBoardId.length > 0 && <TaskView boards={boards} selectedBoardId={selectedBoardId} setTaskList={setTaskList} taskList={taskList} /> }
     </>
   );
 };

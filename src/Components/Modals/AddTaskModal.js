@@ -5,7 +5,7 @@ import axios from "axios";
 const AddTaskModal = (props) => {
   const token = localStorage.getItem("token");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = {
@@ -15,12 +15,18 @@ const AddTaskModal = (props) => {
       subtasks: [form.subtask1.value, form.subtask2.value],
       status: form.taskStatus.value,
     };
+    console.log(props.selectedBoardId);
+    await axios
+      .post("http://192.168.0.64:5000/api/boards/list", formData, {
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          props.setTaskList((prev) => [...prev, response.data]);
+        }
+        props.setNewTaskModal((prev) => !prev);
+      });
 
-    axios.post("http://192.168.0.64:5000/api/boards/list", formData, {
-      headers: { Authorization: `Bearer ${JSON.parse(token)}` },
-    }).then((response)=>{
-      console.log(response)
-    });
   };
 
   return (
@@ -50,7 +56,7 @@ const AddTaskModal = (props) => {
               <option>Doing</option>
               <option>Done</option>
             </select>
-            <button type='submit'>Create Task</button>
+            <button type="submit">Create Task</button>
           </div>
         </form>
       </div>

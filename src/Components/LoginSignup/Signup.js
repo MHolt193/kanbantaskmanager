@@ -15,7 +15,7 @@ const Signup = (props) => {
       password: form.password.value,
     };
     axios
-      .post("http://192.168.0.57:5000/api/users", formData)
+      .post("http://192.168.0.64:5000/api/users", formData)
       .then((response) => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("user", JSON.stringify(response.data._id));
