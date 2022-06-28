@@ -76,7 +76,7 @@ const Home = () => {
       {newTaskModal && (
         <AddTaskModal
           setNewTaskModal={setNewTaskModal}
-          setSelectedBoardId={selectedBoardId}
+          selectedBoardId={selectedBoardId}
           addTaskHandler={addTaskHandler}
         />
       )}
@@ -85,7 +85,7 @@ const Home = () => {
         selectBoardHandler={selectBoardHandler}
         boards={boards}
       />
-      <AddTaskBar selectedBoard={selectedBoard} logOutHandler={logOutHandler} addTaskHandler={addTaskHandler} />
+      <AddTaskBar  selectedBoard={selectedBoard} logOutHandler={logOutHandler} addTaskHandler={addTaskHandler} />
       <TaskView boards={boards} selectedBoard={selectedBoard} />
     </>
   );
