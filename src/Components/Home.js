@@ -29,7 +29,7 @@ const Home = () => {
     }
     const getBoards = async () => {
       await axios
-        .get("http://192.168.0.64:5000/api/boards", {
+        .get("http://192.168.0.57:5000/api/boards", {
           headers: {
             Authorization: `Bearer ${JSON.parse(token)}`,
           },

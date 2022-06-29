@@ -17,7 +17,7 @@ const AddTaskModal = (props) => {
     };
     console.log(props.selectedBoardId);
     await axios
-      .post("http://192.168.0.64:5000/api/boards/list", formData, {
+      .post("http://192.168.0.57:5000/api/boards/list", formData, {
         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
@@ -37,26 +37,26 @@ const AddTaskModal = (props) => {
           <button onClick={props.addTaskHandler}>X</button>
         </div>
         <form className={classes.form} onSubmit={submitHandler}>
-          <div>
+          <div className={classes.formInfo}>
             <label for="taskTitle">Title</label>
             <input type="text" id="taskTitle" name="taskTitle" />
             <label for="taskDescription">Description</label>
-            <textarea id="taskDescription" name="taskDescription" />
+            <textarea id="taskDescription" name="taskDescription" className={classes.descriptionBox} />
           </div>
-          <div>
+          <div className={classes.formInfo}>
             <label>Subtasks</label>
             <input type="text" name="subtask1" />
             <input type="text" name="subtask2" />
-            <button>+Add New Subtask</button>
+            <button className={classes.subTaskBtn}>+Add New Subtask</button>
           </div>
-          <div>
+          <div className={classes.formInfo}>
             <label for="taskStatus">Status</label>
-            <select id="tasktStatus" name="taskStatus">
-              <option>Todo</option>
-              <option>Doing</option>
-              <option>Done</option>
+            <select id="tasktStatus" name="taskStatus" className={classes.statusSelect}>
+              <option className={classes.statusOption}>Todo</option>
+              <option className={classes.statusOption}>Doing</option>
+              <option className={classes.statusOption}>Done</option>
             </select>
-            <button type="submit">Create Task</button>
+            <button type="submit" className={classes.submitBtn}>Create Task</button>
           </div>
         </form>
       </div>

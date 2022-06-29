@@ -9,3 +9,22 @@
     height: 90vh;
     display: flex;
 }
+.containerTitle{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: grey;
+    margin-left: 25px;
+}
+.todoDot{
+    color: #42C2EA; 
+    font-size: 20px;
+}
+.doingDot{
+    color: #8570FB;
+    font-size: 20px;
+}
+.doneDot{
+    color: #68E3B0;
+    font-size: 20px;
+}
