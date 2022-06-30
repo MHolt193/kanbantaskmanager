@@ -1,14 +1,72 @@
-.container{
-    display: flex;
-    height: 100vh;
-    width: 20vw;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: left;
-    background-color: #2C2C38;
-    border: 2px solid #32323E;
-    border-bottom: none;
-    color: #EEEFF2;
-    position: absolute;
-    top: 0;
+.container {
+  display: flex;
+  height: 100%;
+  width: 15%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  background-color: #2c2c38;
+  border: 2px solid #32323e;
+  border-bottom: none;
+  position: absolute;
+  top: 0;
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: left;
+  font-size: 20px;
+  align-items: center;
+  color: #fff;
+}
+.boardCount{
+    color: #6c7385;
+    margin-left: 10%;
+    font-weight: 600;
+}
+.headerIcon {
+  font-size: 50px;
+  margin: 5px 10px 0px 25px;
+}
+.active {
+  background-color: #645fc6;
+  color: #eeeff2 !important;
+  width: 70%;
+  padding: 12px;
+  padding-left: 10%;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.active p {
+  margin: 0px;
+  padding: 0px;
+  font-weight: bold;
+}
+
+.boardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #6c7385;
+  margin-left: 10%;
+  font-weight: bold;
+}
+.boardIcon {
+  font-size: 22px;
+  font-weight: normal;
+  margin-right: 10px;
+}
+@media screen and (max-width: 720px) {
+    .container{
+        display: none;
+    }
+    
+}
+@media screen and (max-width: 1200px){
+    .container h1{
+        display: none;
+    }
 }

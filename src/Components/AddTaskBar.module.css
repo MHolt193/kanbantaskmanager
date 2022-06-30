@@ -1,11 +1,11 @@
 .container{
     position: absolute;
     top: 0;
-    left: 20vw;
+    left: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 79vw;
+    width: 84.8%;
     height: 10vh;
     background-color: #2C2C38;
     border: 2px solid #32323E;
@@ -13,6 +13,17 @@
     border-bottom: none;
     color: #EEEFF2;
 }
+.header {
+    display: flex;
+    justify-content: left;
+    margin-left: 25px;
+    align-items: center;
+    color: #fff;
+  }
+.headerIcon {
+    font-size: 50px;
+    margin: 5px 10px 0px 20px;
+  }
 .newTaskBtn {
     border-radius: 50px;
     background-color: #635EC2;
@@ -22,4 +33,18 @@
     color: #EEEFF2;
     font-size: 14px;
     font-weight: bold;
+}
+@media screen and (max-width: 720px) {
+    .container{
+        left: 0;
+        width: 100%;
+    }
+
+    .newTaskBtn{
+        width: 50px;
+    }
+    .header{
+        margin-left: 0px;
+    }
+
 }

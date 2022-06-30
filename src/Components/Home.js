@@ -19,6 +19,24 @@ const Home = () => {
   const [viewTaskModal, setViewTaskModal] = useState(false);
   const [taskList, setTaskList] = useState([]);
 
+  //Mobile state
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 720) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    if (window.innerWidth <= 720) {
+      setIsMobile(true);
+    }
+  },[]);
+
   //First load useEffect
   const navigate = useNavigate();
   useEffect(() => {
@@ -69,7 +87,7 @@ const Home = () => {
   };
 
   const viewTaskHandler = (e) => {
-    setViewTaskModal((prev)=> !prev);
+    setViewTaskModal((prev) => !prev);
     setSelectedTaskId(e.target.id);
   };
   return (
@@ -98,12 +116,15 @@ const Home = () => {
       <SideBar
         addBoardsHandler={addBoardsHandler}
         selectBoardHandler={selectBoardHandler}
+        selectedBoard={selectedBoard}
         boards={boards}
+        isMobile={isMobile}
       />
       <AddTaskBar
         selectedBoard={selectedBoard}
         logOutHandler={logOutHandler}
         addTaskHandler={addTaskHandler}
+        isMobile={isMobile}
       />
       {selectedBoardId.length > 0 && (
         <TaskView
@@ -112,6 +133,7 @@ const Home = () => {
           selectedBoardId={selectedBoardId}
           setTaskList={setTaskList}
           taskList={taskList}
+          isMobile={isMobile}
         />
       )}
     </>

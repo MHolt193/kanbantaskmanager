@@ -1,13 +1,14 @@
 .container{
     position:absolute;
-    top: 10vh;;
-    left: 20vw;
+    top: 10%;
+    left: 15%;
     border: 2px solid #32323E;
     border-bottom: none;
     background-color: #21212D;
-    width: 79vw;
-    height: 90vh;
+    width: 84.8%;
+    height: 90%;
     display: flex;
+    overflow: scroll;
 }
 .containerTitle{
     display: flex;
@@ -27,4 +28,11 @@
 .doneDot{
     color: #68E3B0;
     font-size: 20px;
+}
+@media screen and (max-width: 720px) {
+    .container{
+        left: 0;
+        width: 100%;
+    }
+    
 }

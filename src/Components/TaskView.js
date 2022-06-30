@@ -7,25 +7,25 @@ const TaskView = (props) => {
   const token = localStorage.getItem("token");
   const { taskList, setTaskList, selectedBoardId } = props;
   let todoTasks = taskList.filter((task) => {
-    let sortedTask = ''
+    let sortedTask = "";
     if (task.status === "Todo") {
       sortedTask = task;
     }
     return sortedTask;
   });
   let doingTasks = taskList.filter((task) => {
-    let sortedTask = ''
+    let sortedTask = "";
     if (task.status === "Doing") {
-        sortedTask = task;
+      sortedTask = task;
     }
     return sortedTask;
   });
   let doneTasks = taskList.filter((task) => {
-    let sortedTask = ''
+    let sortedTask = "";
     if (task.status === "Done") {
       sortedTask = task;
     }
-    return sortedTask
+    return sortedTask;
   });
 
   useEffect(() => {
