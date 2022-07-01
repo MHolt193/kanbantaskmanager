@@ -9,6 +9,12 @@
     height: 90%;
     display: flex;
     overflow: scroll;
+    -ms-overflow-style: none; /* Edge, Internet Explorer */
+scrollbar-width: none; /* Firefox */
+overflow-y: scroll;
+}
+.container::-webkit-scrollbar{
+    display:none;
 }
 .containerTitle{
     display: flex;

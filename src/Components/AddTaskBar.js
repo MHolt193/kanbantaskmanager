@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./AddTaskBar.module.css";
-import { HiViewBoards, HiPlus } from "react-icons/hi";
+import { HiViewBoards, HiPlus,  HiDotsVertical } from "react-icons/hi";
 
 const AddTaskBar = (props) => {
   return (
@@ -28,7 +28,7 @@ const AddTaskBar = (props) => {
           </linearGradient>
         </svg>
       </div>
-      <div>
+      <div className={classes.btnContainer}>
         <button onClick={props.addTaskHandler} className={classes.newTaskBtn}>
           {props.isMobile ? (
             <HiPlus style={{ fontSize: "20px" }} />
@@ -39,7 +39,7 @@ const AddTaskBar = (props) => {
             </>
           )}
         </button>
-        <button onClick={props.logOutHandler}>Log Out</button>
+        <button className={classes.options} onClick={props.logOutHandler}><HiDotsVertical /></button>
       </div>
     </div>
   );

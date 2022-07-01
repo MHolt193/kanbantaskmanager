@@ -27,16 +27,24 @@ const ViewTaskModal = (props) => {
         <div className={classes.descriptionContainer}>
           <p>{taskInfo.description}</p>
         </div>
-        <div className={classes.subTaskContainer}>
-          <p>Subtasks</p>
+        <label style={{marginLeft: "5%", marginBottom: '10px'}} htmlFor='subTaskContainer'>Subtasks</label>
+        <div className={classes.subTaskContainer} id="subTaskContainer">
           {taskInfo.subtasks?.map((task) => {
             return (
-              <div>
+              <div className={classes.subtask}>
                 <input type="checkbox" id={task} name={task} />
-                <label for={task}>{task}</label>
+                <label htmlFor={task}>{task}</label>
               </div>
             );
           })}
+        </div>
+        <div className={classes.statusContainer}>
+          <label htmlFor="statusOptions">Status</label>
+          <select className={classes.statusSelect} id="statusOptions" name="statusOptions">
+            <option>Todo</option>
+            <option>Doing</option>
+            <option>Done</option>
+          </select>
         </div>
       </div>
     </div>
