@@ -4,7 +4,7 @@ const Task = (props) =>{
     return(
         <div className={classes.container} id={props.id} onClick={props.onClick}>
             <p className={classes.title}>{props.title}</p>
-            <p className={classes.subtasks}>{` 0 of ${props.subtasks.length} subtasks`}</p>
+            <p className={classes.subtasks}>{` 0 of ${props.subtasks[0].length} subtasks`}</p>
         </div>
     )
 }

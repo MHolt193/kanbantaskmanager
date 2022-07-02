@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./AddTaskModal.module.css";
 import axios from "axios";
 
 const AddTaskModal = (props) => {
   const token = localStorage.getItem("token");
+  const [subTasks, setSubTasks] = useState([{ title: " ", status: "todo" }]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -12,7 +13,7 @@ const AddTaskModal = (props) => {
       board: props.selectedBoardId,
       title: form.taskTitle.value,
       description: form.taskDescription.value,
-      subtasks: [form.subtask1.value, form.subtask2.value],
+      subtasks: [subTasks],
       status: form.taskStatus.value,
     };
     console.log(props.selectedBoardId);
@@ -26,7 +27,24 @@ const AddTaskModal = (props) => {
         }
         props.setNewTaskModal((prev) => !prev);
       });
+  };
 
+  const addSubTaskHandler = (e) => {
+    e.preventDefault();
+    setSubTasks((prev) => [...prev, { title: "", status: "todo" }]);
+  };
+
+  const subTaskChangeHandler = (object) => {
+    return (event) => {
+      setSubTasks((prev) =>
+        prev.map((task) => {
+          if (object === task) {
+            task = { ...task, title: event.target.value };
+          }
+          return task;
+        })
+      );
+    };
   };
 
   return (
@@ -41,22 +59,42 @@ const AddTaskModal = (props) => {
             <label for="taskTitle">Title</label>
             <input type="text" id="taskTitle" name="taskTitle" />
             <label for="taskDescription">Description</label>
-            <textarea id="taskDescription" name="taskDescription" className={classes.descriptionBox} />
+            <textarea
+              id="taskDescription"
+              name="taskDescription"
+              className={classes.descriptionBox}
+            />
           </div>
           <div className={classes.formInfo}>
             <label>Subtasks</label>
-            <input type="text" name="subtask1" />
-            <input type="text" name="subtask2" />
-            <button className={classes.subTaskBtn}>+Add New Subtask</button>
+            {subTasks.map((task, index) => {
+              return (
+                <input
+                  type="text"
+                  key={index}
+                  value={task.title}
+                  onChange={subTaskChangeHandler(task)}
+                />
+              );
+            })}
+            <button className={classes.subTaskBtn} onClick={addSubTaskHandler}>
+              +Add New Subtask
+            </button>
           </div>
           <div className={classes.formInfo}>
             <label for="taskStatus">Status</label>
-            <select id="tasktStatus" name="taskStatus" className={classes.statusSelect}>
+            <select
+              id="tasktStatus"
+              name="taskStatus"
+              className={classes.statusSelect}
+            >
               <option className={classes.statusOption}>Todo</option>
               <option className={classes.statusOption}>Doing</option>
               <option className={classes.statusOption}>Done</option>
             </select>
-            <button type="submit" className={classes.submitBtn}>Create Task</button>
+            <button type="submit" className={classes.submitBtn}>
+              Create Task
+            </button>
           </div>
         </form>
       </div>

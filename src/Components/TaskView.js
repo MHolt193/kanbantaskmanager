@@ -50,7 +50,7 @@ const TaskView = (props) => {
 
   return (
     <div className={classes.container}>
-      <div>
+      <div className={classes.taskContainer}>
         <div className={classes.containerTitle}>
           <GoPrimitiveDot className={classes.todoDot} />
           <p>TODO ({todoTasks.length})</p>
@@ -67,7 +67,7 @@ const TaskView = (props) => {
           );
         })}
       </div>
-      <div>
+      <div className={classes.taskContainer}>
         <div className={classes.containerTitle}>
           {" "}
           <GoPrimitiveDot className={classes.doingDot} />
@@ -85,7 +85,7 @@ const TaskView = (props) => {
           );
         })}
       </div>
-      <div>
+      <div className={classes.taskContainer}>
         <div className={classes.containerTitle}>
           <GoPrimitiveDot className={classes.doneDot} />
           <p>DONE ({doneTasks.length})</p>
