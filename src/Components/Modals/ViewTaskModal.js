@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import classes from "./ViewTaskModal.module.css";
+import ViewTaskOptions from "./ViewTaskOptions";
 import { HiDotsVertical } from "react-icons/hi";
 
 const ViewTaskModal = (props) => {
   const token = localStorage.getItem("token");
   const [taskInfo, setTaskInfo] = useState({});
+  const [optionsMenu, setOptionsMenu] = useState(false)
+
   useEffect(() => {
     axios
       .get(
@@ -17,13 +20,19 @@ const ViewTaskModal = (props) => {
       });
   }, []);
 
+  const optionsHandler = () =>{
+    setOptionsMenu((prev) => !prev)
+  }
+
   return (
     <div className={classes.container}>
       <div className={classes.modal}>
         <div className={classes.titleContainer}>
           <p>{taskInfo.title}</p>
-          <HiDotsVertical />
+          <button onClick={optionsHandler}><HiDotsVertical /></button>
+          {optionsMenu && <ViewTaskOptions setViewTaskModal={props.setViewTaskModal} />}
         </div>
+        
         <div className={classes.descriptionContainer}>
           <p>{taskInfo.description}</p>
         </div>

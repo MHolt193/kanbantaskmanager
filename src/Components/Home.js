@@ -111,6 +111,7 @@ const Home = () => {
         <ViewTaskModal
           selectedBoardId={selectedBoardId}
           selectedTaskId={selectedTaskId}
+          setViewTaskModal={setViewTaskModal}
         />
       )}
       <SideBar
@@ -124,6 +125,9 @@ const Home = () => {
         selectedBoard={selectedBoard}
         logOutHandler={logOutHandler}
         addTaskHandler={addTaskHandler}
+        addBoardsHandler={addBoardsHandler}
+        selectBoardHandler={selectBoardHandler}
+        boards={boards}
         isMobile={isMobile}
       />
       {selectedBoardId.length > 0 && (

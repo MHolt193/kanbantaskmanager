@@ -1,44 +1,43 @@
-.container{
-    position:absolute;
-    top: 10%;
-    left: 15%;
-    border: 2px solid #32323E;
-    border-bottom: none;
-    background-color: #21212D;
-    width: 84.8%;
-    height: 90%;
-    display: flex;
-    overflow: scroll;
-    -ms-overflow-style: none; /* Edge, Internet Explorer */
-scrollbar-width: none; /* Firefox */
-overflow-y: scroll;
+.container {
+  position: absolute;
+  top: 75px;
+  left: 300px;
+  border: 2px solid #32323e;
+  border-bottom: none;
+  background-color: #21212d;
+  width: calc(100% - 304px);
+  height: calc(100% - 75px);
+  display: flex;
+  overflow: scroll;
+  -ms-overflow-style: none; /* Edge, Internet Explorer */
+  scrollbar-width: none; /* Firefox */
+  overflow-y: scroll;
 }
-.container::-webkit-scrollbar{
-    display:none;
+.container::-webkit-scrollbar {
+  display: none;
 }
-.containerTitle{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: grey;
-    margin-left: 25px;
+.containerTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: grey;
+  margin-left: 25px;
 }
-.todoDot{
-    color: #42C2EA; 
-    font-size: 20px;
+.todoDot {
+  color: #42c2ea;
+  font-size: 20px;
 }
-.doingDot{
-    color: #8570FB;
-    font-size: 20px;
+.doingDot {
+  color: #8570fb;
+  font-size: 20px;
 }
-.doneDot{
-    color: #68E3B0;
-    font-size: 20px;
+.doneDot {
+  color: #68e3b0;
+  font-size: 20px;
 }
 @media screen and (max-width: 720px) {
-    .container{
-        left: 0;
-        width: 100%;
-    }
-    
+  .container {
+    left: 0;
+    width: 100%;
+  }
 }

@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import Options from "./Options";
+import MobileMenu from "./MobileMenu";
 import classes from "./AddTaskBar.module.css";
-import { HiViewBoards, HiPlus,  HiDotsVertical } from "react-icons/hi";
+import {
+  HiViewBoards,
+  HiPlus,
+  HiDotsVertical,
+  HiChevronDown,
+} from "react-icons/hi";
 
 const AddTaskBar = (props) => {
+  const [optionsMenu, setOptionsMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+
   return (
     <div className={classes.container}>
-      <div className={classes.header}>
+      <div
+        className={classes.header}
+        onClick={() => props.isMobile && setMobileMenu((prev) => !prev)}
+      >
         <HiViewBoards
           className={classes.headerIcon}
           style={
@@ -15,6 +28,9 @@ const AddTaskBar = (props) => {
           }
         />
         <h2>{props.selectedBoard}</h2>
+        {props.isMobile && (
+          <HiChevronDown style={{ color: "#635EC2", fontSize: "25px" }} />
+        )}
         <svg width="0" height="0">
           <linearGradient
             id="top-purple-gradient"
@@ -27,6 +43,14 @@ const AddTaskBar = (props) => {
             <stop stopColor="#44457D" offset="100%" />
           </linearGradient>
         </svg>
+        {props.isMobile && mobileMenu && (
+          <MobileMenu
+            selectedBoard={props.selectedBoard}
+            addBoardsHandler={props.addBoardsHandler}
+            selectBoardHandler={props.selectBoardHandler}
+            boards={props.boards}
+          />
+        )}
       </div>
       <div className={classes.btnContainer}>
         <button onClick={props.addTaskHandler} className={classes.newTaskBtn}>
@@ -39,7 +63,13 @@ const AddTaskBar = (props) => {
             </>
           )}
         </button>
-        <button className={classes.options} onClick={props.logOutHandler}><HiDotsVertical /></button>
+        <button
+          className={classes.options}
+          onClick={() => setOptionsMenu((prev) => !prev)}
+        >
+          <HiDotsVertical />
+        </button>
+        {optionsMenu && <Options />}
       </div>
     </div>
   );
