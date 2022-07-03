@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./AddTaskModal.module.css";
 import axios from "axios";
+import { FaTimes } from "react-icons/fa";
 
 const AddTaskModal = (props) => {
   const token = localStorage.getItem("token");
@@ -34,6 +35,13 @@ const AddTaskModal = (props) => {
     setSubTasks((prev) => [...prev, { title: "", status: "todo" }]);
   };
 
+  const removeSubTaskHandler = (index) => {
+    const stateCopy = [...subTasks];
+    stateCopy.splice(index, 1);
+
+    setSubTasks(stateCopy);
+  };
+
   const subTaskChangeHandler = (object) => {
     return (event) => {
       setSubTasks((prev) =>
@@ -52,12 +60,14 @@ const AddTaskModal = (props) => {
       <div className={classes.modal}>
         <div className={classes.titleContainer}>
           <h2>Add New Task</h2>
-          <button onClick={props.addTaskHandler}>X</button>
+          <button className={classes.closeBtn} onClick={props.addTaskHandler}>
+            <FaTimes />
+          </button>
         </div>
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.formInfo}>
             <label for="taskTitle">Title</label>
-            <input type="text" id="taskTitle" name="taskTitle" required/>
+            <input type="text" id="taskTitle" name="taskTitle" required />
             <label for="taskDescription">Description</label>
             <textarea
               id="taskDescription"
@@ -70,12 +80,21 @@ const AddTaskModal = (props) => {
             <label>Subtasks</label>
             {subTasks.map((task, index) => {
               return (
-                <input
-                  type="text"
-                  key={index}
-                  value={task.title}
-                  onChange={subTaskChangeHandler(task)}
-                />
+                <div className={classes.subTaskContainer}>
+                  <input
+                    type="text"
+                    key={index}
+                    value={task.title}
+                    onChange={subTaskChangeHandler(task)}
+                  />
+                  <button
+                    type="button"
+                    className={classes.closeBtn}
+                    onClick={() => removeSubTaskHandler(index)}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
               );
             })}
             <button className={classes.subTaskBtn} onClick={addSubTaskHandler}>

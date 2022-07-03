@@ -1,92 +1,112 @@
-.modalContainer{
-    width: 99.2vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.40);
-    position: absolute;
-    top: 0;
-    z-index: 2;
+.modalContainer {
+  width: 99.2vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  z-index: 2;
 }
 
-.modal{
-    display: flex;
-    flex-direction: column;
-    width: 425px;
-    background-color: #2C2C38;
-    color: #E2E3E8;
-    border-radius: 10px;
-    min-height: 600px;
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: #2c2c38;
+  color: #e2e3e8;
+  border-radius: 10px;
+  min-height: 600px;
+}
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 20px 20px 20px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+}
+.formInfo {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin-bottom: 25px;
+}
+.formInfo label {
+  color: #ececf1;
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 15px;
+}
+.formInfo input {
+  height: 30px;
+  background: none;
+  border: 2px solid #393945;
+  color: #ececf1;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.descriptionBox {
+  height: 90px;
+  background: none;
+  border: 2px solid #393945;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: #ececf1;
+  resize: none;
+}
+.subTaskBtn {
+  background-color: #ffffff;
+  border-radius: 50px;
+  height: 35px;
+  border: none;
+  color: #645fc6;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.submitBtn {
+  background-color: #645fc6;
+  border-radius: 50px;
+  height: 35px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.statusSelect {
+  height: 30px;
+  background: none;
+  border: 2px solid #393945;
+  border-radius: 5px;
+  color: #fff;
+}
+.statusOption {
+  background-color: #2c2c38;
+}
+.subTaskContainer {
+  display: flex;
 
+  align-items: center;
+  gap: 5%;
+  width: 100%;
 }
-.titleContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px 20px 20px 20px;
+.subTaskContainer input[type="text"] {
+  width: 90%;
 }
-.form{
-display: flex;
-flex-direction: column;
-height: 100%;
-align-items: center;
-}
-.formInfo{
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-}
-.formInfo label{
-    color: #ECECF1;
-    font-weight: bold;
-    font-size: 12px;
-    margin-top: 15px;
-}
-.formInfo input{
-    height: 30px;
-    background: none;
-    border: 2px solid #393945;
-    color: #ECECF1;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-.descriptionBox{
-    height: 90px;
-    background: none;
-    border: 2px solid #393945;
-    border-radius: 5px;
-    margin-top: 5px;
-    color: #ECECF1;
-    resize: none;
-}
-.subTaskBtn{
-    background-color: #FFFFFF;
-    border-radius: 50px;
-    height: 35px;
-    border: none;
-    color: #645FC6;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-.submitBtn{
-    background-color: #645FC6;
-    border-radius: 50px;
-    height: 35px;
-    border: none;
-    color: #FFF ;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-.statusSelect{
-    height: 30px;
-    background: none;
-    border: 2px solid #393945;
-    border-radius: 5px;
-    color: #FFF;
-}
-.statusOption{
-    background-color: #2C2C38;
+.closeBtn {
+  background: none;
+  height: 30px;
+  width: 5%;
+  color:#868D9D;
+  font-size: 20px;
+  padding: 0;
+  margin-top: 5px;
+  border: none;
 }
