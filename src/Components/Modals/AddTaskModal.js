@@ -57,12 +57,13 @@ const AddTaskModal = (props) => {
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.formInfo}>
             <label for="taskTitle">Title</label>
-            <input type="text" id="taskTitle" name="taskTitle" />
+            <input type="text" id="taskTitle" name="taskTitle" required/>
             <label for="taskDescription">Description</label>
             <textarea
               id="taskDescription"
               name="taskDescription"
               className={classes.descriptionBox}
+              required
             />
           </div>
           <div className={classes.formInfo}>
