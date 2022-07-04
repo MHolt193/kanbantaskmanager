@@ -97,7 +97,7 @@ const AddTaskModal = (props) => {
                 </div>
               );
             })}
-            <button className={classes.subTaskBtn} onClick={addSubTaskHandler}>
+            <button type="button" className={classes.subTaskBtn} onClick={addSubTaskHandler}>
               +Add New Subtask
             </button>
           </div>

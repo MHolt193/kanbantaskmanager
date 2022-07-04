@@ -5,7 +5,7 @@
     align-items: flex-start;
     background-color: #2C2C38;
     width: 275px;
-    height: 100px;
+    min-height: 100px;
     border-radius: 10px;
     color: white;
     gap: 15px;

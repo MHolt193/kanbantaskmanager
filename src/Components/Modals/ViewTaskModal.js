@@ -18,7 +18,7 @@ const ViewTaskModal = (props) => {
       .then((response) => {
         setTaskInfo({ ...response.data[0] });
       });
-  }, []);
+  }, [token, props.selectedTaskId, props.selectedBoardId]);
 
   const optionsHandler = () => {
     setOptionsMenu((prev) => !prev);
@@ -29,7 +29,11 @@ const ViewTaskModal = (props) => {
       <div className={classes.modal}>
         <div className={classes.titleContainer}>
           <p>{taskInfo.title}</p>
-          <button onClick={optionsHandler}>
+          <button
+            type="button"
+            className={classes.optionsBtn}
+            onClick={optionsHandler}
+          >
             <HiDotsVertical />
           </button>
           {optionsMenu && (
@@ -52,6 +56,7 @@ const ViewTaskModal = (props) => {
               return (
                 <div className={classes.subtask}>
                   <input
+                    className={classes.checkbox}
                     type="checkbox"
                     id={task.title}
                     name={task.title}

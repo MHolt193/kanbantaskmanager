@@ -38,13 +38,12 @@ const SideBar = (props) => {
                     ? classes.active
                     : classes.boardContainer
                 }
-              >
-                <TbLayoutBoardSplit className={classes.boardIcon} />
-                <p
-                  onClick={props.selectBoardHandler}
+                onClick={props.selectBoardHandler}
                   id={board._id}
                   key={board._id}
-                >
+              >
+                <TbLayoutBoardSplit className={classes.boardIcon} />
+                <p>
                   {board.title}
                 </p>
               </div>

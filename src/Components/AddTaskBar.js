@@ -69,7 +69,15 @@ const AddTaskBar = (props) => {
         >
           <HiDotsVertical />
         </button>
-        {optionsMenu && <Options />}
+        {optionsMenu && (
+          <Options
+            logOutHandler={props.logOutHandler}
+            selectedBoardId={props.selectedBoardId}
+            setBoards={props.setBoards}
+            setSelectedBoardId={props.setSelectedBoardId}
+            setSelectedBoard={props.setSelectedBoard}
+          />
+        )}
       </div>
     </div>
   );

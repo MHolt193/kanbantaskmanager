@@ -35,7 +35,7 @@ const Home = () => {
     if (window.innerWidth <= 720) {
       setIsMobile(true);
     }
-  },[]);
+  }, []);
 
   //First load useEffect
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const Home = () => {
         });
     };
     getBoards();
-  }, []);
+  }, [navigate]);
 
   //Handlers
   const addBoardsHandler = (e) => {
@@ -74,8 +74,8 @@ const Home = () => {
   };
 
   const selectBoardHandler = (e) => {
-    setSelectedBoard(e.target.innerText);
-    setSelectedBoardId(e.target.id);
+    setSelectedBoard(e.currentTarget.innerText);
+    setSelectedBoardId(e.currentTarget.id);
   };
   const addTaskHandler = () => {
     setNewTaskModal((prev) => !prev);
@@ -123,10 +123,14 @@ const Home = () => {
       />
       <AddTaskBar
         selectedBoard={selectedBoard}
+        selectedBoardId={selectedBoardId}
         logOutHandler={logOutHandler}
         addTaskHandler={addTaskHandler}
         addBoardsHandler={addBoardsHandler}
         selectBoardHandler={selectBoardHandler}
+        setBoards={setBoards}
+        setSelectedBoardId={setSelectedBoardId}
+        setSelectedBoard={setSelectedBoard}
         boards={boards}
         isMobile={isMobile}
       />
