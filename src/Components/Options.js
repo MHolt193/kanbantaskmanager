@@ -3,7 +3,7 @@ import classes from "./Options.module.css";
 import axios from "axios";
 
 const Options = (props) => {
-  const { selectedBoardId, setBoards, setSelectedBoardId, setSelectedBoard } =
+  const { selectedBoardId, setBoards, setSelectedBoardId, setSelectedBoard, setOptionsMenu } =
     props;
 
   const token = localStorage.getItem("token");
@@ -17,10 +17,12 @@ const Options = (props) => {
         setBoards(response.data);
         setSelectedBoard(response.data[0].title);
         setSelectedBoardId(response.data[0]._id);
+        
       })
       .catch((error) => {
         console.error(error);
       });
+      setOptionsMenu(false);
   };
 
   return (

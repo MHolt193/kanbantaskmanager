@@ -76,6 +76,7 @@ const AddTaskBar = (props) => {
             setBoards={props.setBoards}
             setSelectedBoardId={props.setSelectedBoardId}
             setSelectedBoard={props.setSelectedBoard}
+            setOptionsMenu={setOptionsMenu}
           />
         )}
       </div>
