@@ -4,6 +4,13 @@ import axios from "axios";
 import { FaTimes } from "react-icons/fa";
 
 const AddTaskModal = (props) => {
+  const {
+    selectedBoardId,
+    setTaskList,
+    setNewTaskModal,
+    darkMode,
+    addTaskHandler,
+  } = props;
   const token = localStorage.getItem("token");
   const [subTasks, setSubTasks] = useState([{ title: " ", status: "todo" }]);
 
@@ -11,22 +18,21 @@ const AddTaskModal = (props) => {
     e.preventDefault();
     const form = e.target;
     const formData = {
-      board: props.selectedBoardId,
+      board: selectedBoardId,
       title: form.taskTitle.value,
       description: form.taskDescription.value,
-      subtasks: [subTasks],
+      subtasks: subTasks,
       status: form.taskStatus.value,
     };
-    console.log(props.selectedBoardId);
     await axios
       .post("http://192.168.0.57:5000/api/boards/list", formData, {
         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
         if (response.status === 200) {
-          props.setTaskList((prev) => [...prev, response.data]);
+          setTaskList((prev) => [...prev, response.data]);
         }
-        props.setNewTaskModal((prev) => !prev);
+        setNewTaskModal((prev) => !prev);
       });
   };
 
@@ -57,33 +63,48 @@ const AddTaskModal = (props) => {
 
   return (
     <div className={classes.modalContainer}>
-      <div className={classes.modal}>
+      <div
+        className={`${classes.modal} ${
+          darkMode ? classes.dark : classes.light
+        }`}
+      >
         <div className={classes.titleContainer}>
           <h2>Add New Task</h2>
-          <button className={classes.closeBtn} onClick={props.addTaskHandler}>
+          <button className={classes.closeBtn} onClick={addTaskHandler}>
             <FaTimes />
           </button>
         </div>
         <form className={classes.form} onSubmit={submitHandler}>
-          <div className={classes.formInfo}>
-            <label for="taskTitle">Title</label>
+          <div
+            className={`${classes.formInfo} ${
+              darkMode ? classes.dark : classes.light
+            }`}
+          >
+            <label htmlFor="taskTitle">Title</label>
             <input type="text" id="taskTitle" name="taskTitle" required />
-            <label for="taskDescription">Description</label>
+            <label htmlFor="taskDescription">Description</label>
             <textarea
               id="taskDescription"
               name="taskDescription"
-              className={classes.descriptionBox}
+              className={`${classes.descriptionBox} ${
+                darkMode ? classes.dark : classes.light
+              }`}
               required
             />
           </div>
-          <div className={classes.formInfo}>
+          <div
+            className={`${classes.formInfo} ${
+              darkMode ? classes.dark : classes.light
+            }`}
+          >
             <label>Subtasks</label>
             {subTasks.map((task, index) => {
               return (
                 <div className={classes.subTaskContainer}>
                   <input
                     type="text"
-                    key={index}
+                    key={`task${index}}`}
+                    id={`task${index}`}
                     value={task.title}
                     onChange={subTaskChangeHandler(task)}
                   />
@@ -97,12 +118,16 @@ const AddTaskModal = (props) => {
                 </div>
               );
             })}
-            <button type="button" className={classes.subTaskBtn} onClick={addSubTaskHandler}>
+            <button
+              type="button"
+              className={classes.subTaskBtn}
+              onClick={addSubTaskHandler}
+            >
               +Add New Subtask
             </button>
           </div>
           <div className={classes.formInfo}>
-            <label for="taskStatus">Status</label>
+            <label htmlFor="taskStatus">Status</label>
             <select
               id="tasktStatus"
               name="taskStatus"

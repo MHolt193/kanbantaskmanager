@@ -18,6 +18,9 @@ const Home = () => {
   const [newTaskModal, setNewTaskModal] = useState(false);
   const [viewTaskModal, setViewTaskModal] = useState(false);
   const [taskList, setTaskList] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
+  const [hiddenSidebar, setHiddenSidebar] = useState(false);
+
 
   //Mobile state
   const [isMobile, setIsMobile] = useState(false);
@@ -36,8 +39,16 @@ const Home = () => {
       setIsMobile(true);
     }
   }, []);
+  //Dark Mode
+  useEffect(() => {
+    if (localStorage.getItem("darkMode") === "true") {
+      setDarkMode(true);
+    } else {
+      setDarkMode(false);
+    }
+  }, []);
 
-  //First load useEffect
+  //Fetch Boards useEffect
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -88,8 +99,22 @@ const Home = () => {
 
   const viewTaskHandler = (e) => {
     setViewTaskModal((prev) => !prev);
-    setSelectedTaskId(e.target.id);
+    setSelectedTaskId(e.currentTarget.id);
   };
+
+  const handleLightDark = (e) => {
+    if (e.target.checked) {
+      localStorage.setItem("darkMode", "true");
+      setDarkMode(true);
+    } else {
+      localStorage.removeItem("darkMode");
+      setDarkMode(false);
+    }
+  };
+
+  const handleHideSidebar = () =>{
+    setHiddenSidebar((prev) => !prev);
+  }
   return (
     <>
       {newBoardModal && (
@@ -97,6 +122,7 @@ const Home = () => {
           setNewBoardModal={setNewBoardModal}
           addBoardsHandler={addBoardsHandler}
           setBoards={setBoards}
+          darkMode={darkMode}
         />
       )}
       {newTaskModal && (
@@ -105,6 +131,7 @@ const Home = () => {
           selectedBoardId={selectedBoardId}
           addTaskHandler={addTaskHandler}
           setTaskList={setTaskList}
+          darkMode={darkMode}
         />
       )}
       {viewTaskModal && selectedTaskId.length > 0 && (
@@ -112,6 +139,9 @@ const Home = () => {
           selectedBoardId={selectedBoardId}
           selectedTaskId={selectedTaskId}
           setViewTaskModal={setViewTaskModal}
+          taskList={taskList}
+          setTaskList={setTaskList}
+          darkMode={darkMode}
         />
       )}
       <SideBar
@@ -120,6 +150,10 @@ const Home = () => {
         selectedBoard={selectedBoard}
         boards={boards}
         isMobile={isMobile}
+        darkMode={darkMode}
+        handleLightDark={handleLightDark}
+        handleHideSidebar={handleHideSidebar}
+        hiddenSidebar={hiddenSidebar}
       />
       <AddTaskBar
         selectedBoard={selectedBoard}
@@ -132,7 +166,10 @@ const Home = () => {
         setSelectedBoardId={setSelectedBoardId}
         setSelectedBoard={setSelectedBoard}
         boards={boards}
+        handleLightDark={handleLightDark}
         isMobile={isMobile}
+        darkMode={darkMode}
+        hiddenSidebar={hiddenSidebar}
       />
       {selectedBoardId.length > 0 && (
         <TaskView
@@ -140,8 +177,10 @@ const Home = () => {
           boards={boards}
           selectedBoardId={selectedBoardId}
           setTaskList={setTaskList}
+          hiddenSidebar={hiddenSidebar}
           taskList={taskList}
           isMobile={isMobile}
+          darkMode={darkMode}
         />
       )}
     </>

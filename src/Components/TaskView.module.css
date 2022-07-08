@@ -2,9 +2,7 @@
   position: absolute;
   top: 75px;
   left: 300px;
-  border: 2px solid #32323e;
   border-bottom: none;
-  background-color: #21212d;
   width: calc(100% - 304px);
   height: calc(100% - 75px);
   display: flex;
@@ -12,9 +10,27 @@
   -ms-overflow-style: none; /* Edge, Internet Explorer */
   scrollbar-width: none; /* Firefox */
   overflow-y: scroll;
+  transition: 800ms ease;
+  transition-property: left, width;
+  
 }
 .container::-webkit-scrollbar {
   display: none;
+}
+.container.dark{
+    background-color: #21212d;
+    border: 2px solid #32323E;
+}
+.container.light{
+    background-color: #F4F7FE;
+    border: 2px solid #FAFAFA;
+}
+
+.container.hidden{
+    left: 100px;
+    width: calc(100% - 104px);
+    transition: 800ms ease;
+    transition-property: left, width;
 }
 .taskContainer{
     display: flex;

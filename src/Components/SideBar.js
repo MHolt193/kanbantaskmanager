@@ -3,18 +3,37 @@ import LightDarkSwitch from "./LightDarkSwitch";
 import classes from "./SideBar.module.css";
 import { HiViewBoards } from "react-icons/hi";
 import { TbLayoutBoardSplit } from "react-icons/tb";
-import {AiOutlineEyeInvisible} from 'react-icons/ai'
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 
 const SideBar = (props) => {
+  const {
+    boards,
+    selectedBoard,
+    selectBoardHandler,
+    addBoardsHandler,
+    handleLightDark,
+    darkMode,
+    hiddenSidebar,
+    handleHideSidebar,
+  } = props;
+
   return (
-    <div className={classes.container}>
+    <div
+      className={`${classes.container} ${
+        darkMode ? classes.dark : classes.light
+      } ${hiddenSidebar && classes.hidden}`}
+    >
       <div>
-        <div className={classes.sidebarHeader}>
+        <div
+          className={`${classes.sidebarHeader} ${
+            darkMode ? classes.dark : classes.light
+          }`}
+        >
           <HiViewBoards
             className={classes.headerIcon}
             style={{ fill: "url(#purple-gradient" }}
           />
-          <h1>kanban</h1>
+          <h1>{hiddenSidebar ? "" :"kanban"}</h1>
           <svg width="0" height="0">
             <linearGradient
               id="purple-gradient"
@@ -28,42 +47,43 @@ const SideBar = (props) => {
             </linearGradient>
           </svg>
         </div>
-        <p className={classes.boardCount}>ALL BOARDS ({props.boards.length})</p>
+        <p className={classes.boardCount}>ALL BOARDS ({boards.length})</p>
         <div>
-          {props.boards.map((board) => {
+          {boards.map((board) => {
             return (
               <div
                 className={
-                  props.selectedBoard === board.title
+                  selectedBoard === board.title
                     ? classes.active
                     : classes.boardContainer
                 }
-                onClick={props.selectBoardHandler}
-                  id={board._id}
-                  key={board._id}
+                onClick={selectBoardHandler}
+                id={board._id}
+                key={board._id}
               >
                 <TbLayoutBoardSplit className={classes.boardIcon} />
-                <p>
-                  {board.title}
-                </p>
+                <p>{board.title}</p>
               </div>
             );
           })}
           <div
             className={classes.boardContainer}
             style={{ color: "#6A65AC" }}
-            onClick={props.addBoardsHandler}
+            onClick={addBoardsHandler}
           >
             <TbLayoutBoardSplit className={classes.boardIcon} />
-            <p>+Create New Board</p>
+            <p>+{hiddenSidebar ? "":"Create New Board"}</p>
           </div>
         </div>
       </div>
       <div>
-        <LightDarkSwitch />
-        <div className={classes.boardContainer}>
+        <LightDarkSwitch
+          handleLightDark={handleLightDark}
+          darkMode={darkMode}
+        />
+        <div className={classes.boardContainer} onClick={handleHideSidebar}>
           <AiOutlineEyeInvisible />
-          <p>Hide Sidebar</p>
+         <p>{hiddenSidebar? "":"Hide Sidebar"}</p> 
         </div>
       </div>
     </div>

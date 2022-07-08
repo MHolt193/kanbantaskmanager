@@ -3,12 +3,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    background-color: #2C2C38;
     width: 275px;
     min-height: 100px;
     border-radius: 10px;
-    color: white;
+    cursor: pointer;
     gap: 15px;
+}
+.container.light{
+    background-color: #FEFEFE;
+    color: black;
+}
+.container.dark{
+    background-color: #2C2C38;
+    color: white;
 }
 .title{
     font-weight: bold;

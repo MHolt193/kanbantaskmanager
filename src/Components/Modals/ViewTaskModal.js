@@ -5,6 +5,14 @@ import ViewTaskOptions from "./ViewTaskOptions";
 import { HiDotsVertical } from "react-icons/hi";
 
 const ViewTaskModal = (props) => {
+  const {
+    selectedBoardId,
+    selectedTaskId,
+    darkMode,
+    taskList,
+    setTaskList,
+    setViewTaskModal,
+  } = props;
   const token = localStorage.getItem("token");
   const [taskInfo, setTaskInfo] = useState({});
   const [optionsMenu, setOptionsMenu] = useState(false);
@@ -12,23 +20,75 @@ const ViewTaskModal = (props) => {
   useEffect(() => {
     axios
       .get(
-        `http://192.168.0.57:5000/api/boards/list/${props.selectedBoardId}/${props.selectedTaskId}`,
+        `http://192.168.0.57:5000/api/boards/list/${selectedBoardId}/${selectedTaskId}`,
         { headers: { Authorization: `Bearer ${JSON.parse(token)}` } }
       )
       .then((response) => {
         setTaskInfo({ ...response.data[0] });
       });
-  }, [token, props.selectedTaskId, props.selectedBoardId]);
+  }, [token, selectedTaskId, selectedBoardId]);
 
   const optionsHandler = () => {
     setOptionsMenu((prev) => !prev);
   };
 
+  const checkBoxHandler = (e) => {
+    if (e.target.checked) {
+      setTaskInfo((prev) => {
+        let prevCopy = { ...prev };
+        prevCopy.subtasks = prevCopy.subtasks.map((task) => {
+          if (task.title === e.target.id) {
+            task = { ...task, status: "done" };
+          }
+          return task;
+        });
+        let doneSubTasks = 0;
+        prevCopy.subtasks.forEach((task) => {
+          if (task.status === "done") doneSubTasks = doneSubTasks + 1;
+        });
+        if (doneSubTasks > 0 && doneSubTasks < prevCopy.subtasks.length) {
+          prevCopy = { ...prevCopy, status: "Doing" };
+        } else if (doneSubTasks === prevCopy.subtasks.length) {
+          prevCopy = { ...prevCopy, status: "Done" };
+        } else {
+          prevCopy = { ...prevCopy, status: "Todo" };
+        }
+        return prevCopy;
+      });
+    } else {
+      setTaskInfo((prev) => {
+        let prevCopy = { ...prev };
+        prevCopy.subtasks = prevCopy.subtasks.map((task) => {
+          if (task.title === e.target.id) {
+            task = { ...task, status: "todo" };
+          }
+          return task;
+        });
+        let doneSubTasks = 0;
+        prevCopy.subtasks.forEach((task) => {
+          if (task.status === "done") doneSubTasks = doneSubTasks + 1;
+        });
+        if (doneSubTasks > 0 && doneSubTasks < prevCopy.subtasks.length) {
+          prevCopy.status = "Doing";
+        } else if (doneSubTasks === prevCopy.subtasks.length) {
+          prevCopy.status = "Done";
+        } else {
+          prevCopy.status = "Todo";
+        }
+        return prevCopy;
+      });
+    }
+  };
+
   return (
     <div className={classes.container}>
-      <div className={classes.modal}>
+      <div
+        className={`${classes.modal} ${
+          darkMode ? classes.dark : classes.light
+        }`}
+      >
         <div className={classes.titleContainer}>
-          <p>{taskInfo.title}</p>
+          <p>{taskInfo?.title}</p>
           <button
             type="button"
             className={classes.optionsBtn}
@@ -37,12 +97,20 @@ const ViewTaskModal = (props) => {
             <HiDotsVertical />
           </button>
           {optionsMenu && (
-            <ViewTaskOptions setViewTaskModal={props.setViewTaskModal} />
+            <ViewTaskOptions
+              setViewTaskModal={setViewTaskModal}
+              taskInfo={taskInfo}
+              taskList={taskList}
+              setTaskList={setTaskList}
+              selectedTaskId={selectedTaskId}
+              token={token}
+              darkMode={darkMode}
+            />
           )}
         </div>
 
         <div className={classes.descriptionContainer}>
-          <p>{taskInfo.description}</p>
+          <p>{taskInfo?.description}</p>
         </div>
         <label
           style={{ marginLeft: "5%", marginBottom: "10px" }}
@@ -51,16 +119,22 @@ const ViewTaskModal = (props) => {
           Subtasks
         </label>
         <div className={classes.subTaskContainer} id="subTaskContainer">
-          {taskInfo.subtasks !== undefined &&
-            taskInfo.subtasks[0].map((task, index) => {
+          {taskInfo?.subtasks !== undefined &&
+            taskInfo.subtasks.map((task, index) => {
               return (
-                <div className={classes.subtask}>
+                <div
+                  className={`${classes.subtask} ${
+                    darkMode ? classes.dark : classes.light
+                  }`}
+                >
                   <input
                     className={classes.checkbox}
                     type="checkbox"
                     id={task.title}
                     name={task.title}
                     key={index}
+                    checked={task.status === "done" ? true : false}
+                    onChange={checkBoxHandler}
                   />
                   <label htmlFor={task.title}>{task.title}</label>
                 </div>
@@ -73,6 +147,7 @@ const ViewTaskModal = (props) => {
             className={classes.statusSelect}
             id="statusOptions"
             name="statusOptions"
+            value={taskInfo.status}
           >
             <option>Todo</option>
             <option>Doing</option>

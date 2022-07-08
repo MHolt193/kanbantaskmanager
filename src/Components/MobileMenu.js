@@ -1,16 +1,24 @@
 import React from "react";
+import LightDarkSwitch from "./LightDarkSwitch";
 import classes from "./MobileMenu.module.css";
 import { TbLayoutBoardSplit } from "react-icons/tb";
 
 const MobileMenu = (props) => {
-  const { selectedBoard, selectBoardHandler, boards, addBoardsHandler } = props;
+  const {
+    selectedBoard,
+    selectBoardHandler,
+    boards,
+    addBoardsHandler,
+    darkMode,
+  } = props;
 
   return (
-    <ul className={classes.container}>
+    <ul className={`${classes.container} ${darkMode ? classes.dark: classes.light}`}>
       {boards.map((board) => {
         return (
           <li
-          id={board._id} key={board._id}
+            id={board._id}
+            key={board._id}
             onClick={selectBoardHandler}
             className={
               selectedBoard === board.title
@@ -19,9 +27,7 @@ const MobileMenu = (props) => {
             }
           >
             <TbLayoutBoardSplit className={classes.boardIcon} />
-            <p >
-              {board.title}
-            </p>
+            <p>{board.title}</p>
           </li>
         );
       })}

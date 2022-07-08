@@ -1,0 +1,65 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 80%;
+    margin: auto;
+    color: grey;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.container.light{
+    background-color: #F3F6FE;
+}
+.container.dark{
+    background-color: #21212D;
+}
+
+
+.switchCheck{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.switchLabel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 40px;
+    height: 20px;
+    margin-right: 11px;
+    margin-left:0px;
+    background: grey;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.switchLabel .switchBtn{
+    content: '';
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    transition: 0.2s;
+    background: #fff;
+    box-shadow: 0 0 2px 0 rgba(10,10,10,0.29);
+}
+.switchCheck:checked + .switchLabel .switchBtn{
+    right: calc(100% - 2px);
+    transform: translateX(100%)
+}
+.switchLabel:active .switchBtn{
+    width: 20px;
+}
+@media screen and (max-width: 720px)  {
+    .container{
+        height: 30px;
+    }
+    
+}

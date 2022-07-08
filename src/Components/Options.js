@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Options.module.css";
 import axios from "axios";
+import LightDarkSwitch from "./LightDarkSwitch";
 
 const Options = (props) => {
   const {
@@ -9,6 +10,10 @@ const Options = (props) => {
     setSelectedBoardId,
     setSelectedBoard,
     setOptionsMenu,
+    darkMode,
+    logOutHandler,
+    isMobile,
+    handleLightDark,
   } = props;
 
   const token = localStorage.getItem("token");
@@ -30,11 +35,26 @@ const Options = (props) => {
   };
 
   return (
-    <ul className={classes.container}>
-      <li onClick={props.logOutHandler} className={classes.menuOption}>
+    <ul
+      className={`${classes.container} ${
+        darkMode ? classes.dark : classes.light
+      }`}
+    >
+      <li
+        onClick={logOutHandler}
+        className={`${classes.menuOption} ${
+          darkMode ? classes.dark : classes.light
+        }`}
+      >
         Logout
       </li>
-      <li onClick={deleteBoardhandler} className={classes.delete}>
+      {isMobile && <li><LightDarkSwitch darkMode={darkMode} handleLightDark={handleLightDark} /></li>}
+      <li
+        onClick={deleteBoardhandler}
+        className={`${classes.delete} ${
+          darkMode ? classes.dark : classes.light
+        }`}
+      >
         Delete Current Board
       </li>
     </ul>

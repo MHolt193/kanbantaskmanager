@@ -10,25 +10,48 @@ import {
 } from "react-icons/hi";
 
 const AddTaskBar = (props) => {
+  const {
+    isMobile,
+    selectedBoard,
+    addBoardsHandler,
+    selectBoardHandler,
+    boards,
+    addTaskHandler,
+    logOutHandler,
+    selectedBoardId,
+    setSelectedBoardId,
+    setBoards,
+    setSelectedBoard,
+    handleLightDark,
+    darkMode,
+    hiddenSidebar
+  } = props;
+
   const [optionsMenu, setOptionsMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
-    <div className={classes.container}>
+    <div
+      className={`${classes.container} ${
+        darkMode ? classes.dark : classes.light
+      } ${hiddenSidebar && classes.hidden}`}
+    >
       <div
-        className={classes.header}
-        onClick={() => props.isMobile && setMobileMenu((prev) => !prev)}
+        className={`${classes.header} ${
+          darkMode ? classes.dark : classes.light
+        }`}
+        onClick={() => isMobile && setMobileMenu((prev) => !prev)}
       >
         <HiViewBoards
           className={classes.headerIcon}
           style={
-            props.isMobile
+            isMobile
               ? { fill: "url(#top-purple-gradient" }
               : { display: "none" }
           }
         />
-        <h2>{props.selectedBoard}</h2>
-        {props.isMobile && (
+        <h2>{selectedBoard}</h2>
+        {isMobile && (
           <HiChevronDown style={{ color: "#635EC2", fontSize: "25px" }} />
         )}
         <svg width="0" height="0">
@@ -43,18 +66,19 @@ const AddTaskBar = (props) => {
             <stop stopColor="#44457D" offset="100%" />
           </linearGradient>
         </svg>
-        {props.isMobile && mobileMenu && (
+        {isMobile && mobileMenu && (
           <MobileMenu
-            selectedBoard={props.selectedBoard}
-            addBoardsHandler={props.addBoardsHandler}
-            selectBoardHandler={props.selectBoardHandler}
-            boards={props.boards}
+            selectedBoard={selectedBoard}
+            addBoardsHandler={addBoardsHandler}
+            selectBoardHandler={selectBoardHandler}
+            boards={boards}
+            darkMode={darkMode}
           />
         )}
       </div>
       <div className={classes.btnContainer}>
-        <button onClick={props.addTaskHandler} className={classes.newTaskBtn}>
-          {props.isMobile ? (
+        <button onClick={addTaskHandler} className={classes.newTaskBtn}>
+          {isMobile ? (
             <HiPlus style={{ fontSize: "20px" }} />
           ) : (
             <>
@@ -71,12 +95,15 @@ const AddTaskBar = (props) => {
         </button>
         {optionsMenu && (
           <Options
-            logOutHandler={props.logOutHandler}
-            selectedBoardId={props.selectedBoardId}
-            setBoards={props.setBoards}
-            setSelectedBoardId={props.setSelectedBoardId}
-            setSelectedBoard={props.setSelectedBoard}
+            logOutHandler={logOutHandler}
+            selectedBoardId={selectedBoardId}
+            setBoards={setBoards}
+            setSelectedBoardId={setSelectedBoardId}
+            setSelectedBoard={setSelectedBoard}
             setOptionsMenu={setOptionsMenu}
+            darkMode={darkMode}
+            handleLightDark={handleLightDark}
+            isMobile={isMobile}
           />
         )}
       </div>
