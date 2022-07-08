@@ -18,6 +18,11 @@ const ViewTaskOptions = (props) => {
   const deleteTaskHandler = async () => {
     axios.delete(`http://192.168.0.57:5000/api/boards/list/${selectedTaskId}`, {
       headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+    }).then(()=>{
+        setTaskList((prev)=>{
+            let prevCopy = [...prev];
+            return prevCopy.filter((t) => t._id !== selectedTaskId);
+        })
     });
     setViewTaskModal(false);
   };

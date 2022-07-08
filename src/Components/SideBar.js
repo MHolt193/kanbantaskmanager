@@ -62,7 +62,7 @@ const SideBar = (props) => {
                 key={board._id}
               >
                 <TbLayoutBoardSplit className={classes.boardIcon} />
-                <p>{board.title}</p>
+                <p style={{fontSize: hiddenSidebar && '14px'}}>{board.title}</p>
               </div>
             );
           })}

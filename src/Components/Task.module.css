@@ -8,6 +8,7 @@
     border-radius: 10px;
     cursor: pointer;
     gap: 15px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
 }
 .container.light{
     background-color: #FEFEFE;

@@ -1,5 +1,4 @@
 import React from "react";
-import LightDarkSwitch from "./LightDarkSwitch";
 import classes from "./MobileMenu.module.css";
 import { TbLayoutBoardSplit } from "react-icons/tb";
 

@@ -24,7 +24,7 @@ const AddTaskBar = (props) => {
     setSelectedBoard,
     handleLightDark,
     darkMode,
-    hiddenSidebar
+    hiddenSidebar,
   } = props;
 
   const [optionsMenu, setOptionsMenu] = useState(false);

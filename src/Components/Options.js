@@ -14,6 +14,7 @@ const Options = (props) => {
     logOutHandler,
     isMobile,
     handleLightDark,
+    optionsMenu
   } = props;
 
   const token = localStorage.getItem("token");
@@ -38,7 +39,7 @@ const Options = (props) => {
     <ul
       className={`${classes.container} ${
         darkMode ? classes.dark : classes.light
-      }`}
+      } ${optionsMenu && classes.active}`}
     >
       <li
         onClick={logOutHandler}

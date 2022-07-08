@@ -56,6 +56,7 @@
   .delete.dark:hover{
     background-color: #111124;
   }
+ 
   @media screen and (max-width: 720px)  {
     .delete{
         border-top: 1px solid grey
