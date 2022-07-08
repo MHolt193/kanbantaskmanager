@@ -16,7 +16,7 @@ const ViewTaskOptions = (props) => {
   };
 
   const deleteTaskHandler = async () => {
-    axios.delete(`http://192.168.0.57:5000/api/boards/list/${selectedTaskId}`, {
+    axios.delete(`https://kanbantaskmanager.herokuapp.com/api/boards/list/${selectedTaskId}`, {
       headers: { Authorization: `Bearer ${JSON.parse(token)}` },
     }).then(()=>{
         setTaskList((prev)=>{
@@ -30,7 +30,7 @@ const ViewTaskOptions = (props) => {
   const saveAndExitHandler = async () => {
     axios
       .put(
-        `http://192.168.0.57:5000/api/boards/list/${selectedTaskId}`,
+        `https://kanbantaskmanager.herokuapp.com/api/boards/list/${selectedTaskId}`,
         taskInfo,
         {
           headers: { Authorization: `Bearer ${JSON.parse(token)}` },
