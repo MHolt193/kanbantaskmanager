@@ -20,7 +20,7 @@ const Options = (props) => {
   const token = localStorage.getItem("token");
   const deleteBoardhandler = () => {
     axios
-      .delete(`http://192.168.0.57:5000/api/boards/${selectedBoardId}`, {
+      .delete(`https://kanbantaskmanager.herokuapp.com/api/boards/${selectedBoardId}`, {
         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
