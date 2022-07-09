@@ -10,13 +10,13 @@ The front end uses React, react-router, react-icons and axios, paired with custo
 The backend is based on Express and mongoose, utilizing jwt for user Authentication for each route to the api and bcrypt on user passwords so there are no plain text passwords stored on the database.
 ### Screenshots
 
-Desktop Darkmode: 
-![image](https://user-images.githubusercontent.com/76035004/178115635-44ab8769-7225-4044-8572-6a3f9d7fc2fb.png)
-Desktop Lightmode:
-![image](https://user-images.githubusercontent.com/76035004/178115663-ab206823-15c7-4dbe-b7e0-5d087434540b.png)
-Tablet View:
-![image](https://user-images.githubusercontent.com/76035004/178115688-d1853830-99f6-4475-a10d-f8cd76363a0f.png)
-Mobile View:
+Desktop Darkmode: \
+![image](https://user-images.githubusercontent.com/76035004/178115635-44ab8769-7225-4044-8572-6a3f9d7fc2fb.png)\
+Desktop Lightmode:\
+![image](https://user-images.githubusercontent.com/76035004/178115663-ab206823-15c7-4dbe-b7e0-5d087434540b.png)\
+Tablet View:\
+![image](https://user-images.githubusercontent.com/76035004/178115688-d1853830-99f6-4475-a10d-f8cd76363a0f.png)\
+Mobile View:\
 ![image](https://user-images.githubusercontent.com/76035004/178115728-d419200a-6029-49bc-959f-4c75e05bc546.png)
 
 
