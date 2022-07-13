@@ -27,7 +27,7 @@
   height: 100%;
 }
 .menuOption:hover {
-  background-color: #111124;
+
   transition: background-color 0.5s linear;
 }
 .menuOption.light:hover{
