@@ -107,6 +107,7 @@ const AddTaskModal = (props) => {
                     id={`task${index}`}
                     value={task.title}
                     onChange={subTaskChangeHandler(task)}
+                    required
                   />
                   <button
                     type="button"
