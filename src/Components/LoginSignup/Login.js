@@ -16,7 +16,7 @@ const Login = () => {
       password: form.password.value,
     };
     await axios
-      .post("https://kanbantaskmanager.herokuapp.com/api/users/login", formData)
+      .post("https://mhkanbanbackend.onrender.com/api/users/login", formData)
       .then((response) => {
         const data = response.data;
         localStorage.setItem("token", JSON.stringify(data.token));

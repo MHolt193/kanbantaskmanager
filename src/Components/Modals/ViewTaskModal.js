@@ -20,7 +20,7 @@ const ViewTaskModal = (props) => {
   useEffect(() => {
     axios
       .get(
-        `https://kanbantaskmanager.herokuapp.com/api/boards/list/${selectedBoardId}/${selectedTaskId}`,
+        `https://mhkanbanbackend.onrender.com/api/boards/list/${selectedBoardId}/${selectedTaskId}`,
         { headers: { Authorization: `Bearer ${JSON.parse(token)}` } }
       )
       .then((response) => {

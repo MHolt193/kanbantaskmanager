@@ -25,7 +25,7 @@ const AddTaskModal = (props) => {
       status: form.taskStatus.value,
     };
     await axios
-      .post("https://kanbantaskmanager.herokuapp.com/api/boards/list", formData, {
+      .post("https://mhkanbanbackend.onrender.com/api/boards/list", formData, {
         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {

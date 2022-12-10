@@ -30,7 +30,7 @@ const ViewTaskOptions = (props) => {
   const saveAndExitHandler = async () => {
     axios
       .put(
-        `https://kanbantaskmanager.herokuapp.com/api/boards/list/${selectedTaskId}`,
+        `https://mhkanbanbackend.onrender.com/api/boards/list/${selectedTaskId}`,
         taskInfo,
         {
           headers: { Authorization: `Bearer ${JSON.parse(token)}` },

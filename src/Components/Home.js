@@ -58,7 +58,7 @@ const Home = () => {
     }
     const getBoards = async () => {
       await axios
-        .get("https://kanbantaskmanager.herokuapp.com/api/boards", {
+        .get("https://mhkanbanbackend.onrender.com/api/boards", {
           headers: {
             Authorization: `Bearer ${JSON.parse(token)}`,
           },

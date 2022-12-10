@@ -41,7 +41,7 @@ const TaskView = (props) => {
   useEffect(() => {
     const getTasks = async () => {
       axios
-        .get(`https://kanbantaskmanager.herokuapp.com/api/boards/list/${selectedBoardId}`, {
+        .get(`https://mhkanbanbackend.onrender.com/api/boards/list/${selectedBoardId}`, {
           headers: { Authorization: `Bearer ${JSON.parse(token)}` },
         })
         .then((response) => {

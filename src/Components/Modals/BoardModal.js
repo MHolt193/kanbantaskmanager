@@ -13,7 +13,7 @@ const BoardModal = (props) => {
     };
     const token = localStorage.getItem("token");
     axios
-      .post("https://kanbantaskmanager.herokuapp.com/api/boards", formData, {
+      .post("https://mhkanbanbackend.onrender.com/api/boards", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
