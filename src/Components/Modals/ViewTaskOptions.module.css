@@ -27,7 +27,7 @@
   height: 100%;
 }
 .menuOption:hover {
-
+  cursor: pointer;
   transition: background-color 0.5s linear;
 }
 .menuOption.light:hover{

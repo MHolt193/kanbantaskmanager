@@ -29,3 +29,13 @@
     margin: 0px 0px 0px 20px;
     font-size:12px;
 }
+.container:hover{
+    transition: transform 0.2s ease-in;
+    transform: scale(1.05);
+}
+.container.light:hover{
+    background-color: #f8f8f8;
+}
+.container.dark:hover{
+    background-color: #2E2C38;
+}

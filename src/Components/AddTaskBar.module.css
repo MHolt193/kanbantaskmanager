@@ -57,6 +57,10 @@
     cursor: pointer;
     font-weight: bold;
 }
+.newTaskBtn:hover{
+    transition: transform 0.1s ease-in-out;
+    transform: scale(1.05);
+}
 .btnContainer{
     display: flex;
     justify-content: center;
@@ -71,6 +75,9 @@
     border: none;
     font-size: 34px;
     cursor: pointer;
+}
+.options:hover{
+   color: rgb(161, 161, 161);
 }
 @media screen and (max-width: 720px) {
     .container{

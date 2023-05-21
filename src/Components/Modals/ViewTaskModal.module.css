@@ -59,6 +59,11 @@
   padding: 5px;
   border-radius: 5px;
 }
+.subtask:hover{
+  transition: transform 0.1s ease-in-out;
+  transform: scale(1.05);
+  cursor: pointer;
+}
 .subtask.light{
     background-color: #d0dcec;
     color: black;
@@ -84,6 +89,9 @@
   padding: 5px;
   color: #fff
 
+}
+.statusSelect:hover{
+  cursor: pointer;
 }
 .optionsBtn{
     background: none;

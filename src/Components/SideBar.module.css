@@ -47,7 +47,7 @@
   margin: 5px 10px 0px 25px;
 }
 .active {
-  background-color: #645fc6;
+  background-color: hwb(243 37% 22%);
   color: #eeeff2 !important;
   width: 70%;
   padding: 12px;
@@ -58,6 +58,10 @@
   cursor: pointer;
   justify-content: flex-start;
   align-items: center;
+}
+.active:hover {
+  transition: all 0.1s ease-in-out;
+  width: 75%;
 }
 .active p {
   margin: 0px;
