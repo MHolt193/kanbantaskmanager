@@ -79,7 +79,14 @@ const ViewTaskModal = (props) => {
       });
     }
   };
+  const selectStatusHandler = (e) =>{
+    setTaskInfo((prev)=>{
+      let prevCopy = {...prev}
+      prevCopy.status = e.target.value;
+      return prevCopy;
+    })
 
+  }
   return (
     <div className={classes.container}>
       <div
@@ -149,9 +156,9 @@ const ViewTaskModal = (props) => {
             name="statusOptions"
             value={taskInfo.status}
           >
-            <option>Todo</option>
-            <option>Doing</option>
-            <option>Done</option>
+            <option onClick={selectStatusHandler}>Todo</option>
+            <option onClick={selectStatusHandler}>Doing</option>
+            <option onClick={selectStatusHandler}>Done</option>
           </select>
         </div>
       </div>
