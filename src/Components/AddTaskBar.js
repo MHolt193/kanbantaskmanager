@@ -8,7 +8,7 @@ import {
   HiDotsVertical,
   HiChevronDown,
 } from "react-icons/hi";
-import Notifications from "./Notifications"
+import Notifications from "./Notification/Notifications"
 
 const AddTaskBar = (props) => {
   const {
