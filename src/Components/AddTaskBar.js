@@ -8,6 +8,7 @@ import {
   HiDotsVertical,
   HiChevronDown,
 } from "react-icons/hi";
+import Notifications from "./Notifications"
 
 const AddTaskBar = (props) => {
   const {
@@ -77,6 +78,7 @@ const AddTaskBar = (props) => {
         )}
       </div>
       <div className={classes.btnContainer}>
+      <Notifications/>
         <button onClick={addTaskHandler} className={classes.newTaskBtn}>
           {isMobile ? (
             <HiPlus style={{ fontSize: "20px" }} />
