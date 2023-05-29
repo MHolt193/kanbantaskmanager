@@ -7,6 +7,7 @@ import axios from "axios";
 import BoardModal from "./Modals/BoardModal";
 import AddTaskModal from "./Modals/AddTaskModal";
 import ViewTaskModal from "./Modals/ViewTaskModal";
+import ShareBoardModal from "./Modals/ShareBoardModal";
 
 const Home = () => {
   //STATE
@@ -20,6 +21,7 @@ const Home = () => {
   const [taskList, setTaskList] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
+  const [viewShareBoard, setViewShareBoard] = useState(true);
 
 
   //Mobile state
@@ -144,6 +146,7 @@ const Home = () => {
           darkMode={darkMode}
         />
       )}
+      {viewShareBoard && <ShareBoardModal/>}
       <SideBar
         addBoardsHandler={addBoardsHandler}
         selectBoardHandler={selectBoardHandler}
