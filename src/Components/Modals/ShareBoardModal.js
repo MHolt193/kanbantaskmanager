@@ -8,7 +8,7 @@ const ShareBoardModal = (props) => {
   const [usersToInvite, setUsersToInvite] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
-  const {closeShareBoard} = props;
+  const { closeShareBoard } = props;
   return (
     <div className={classes.modalContainer}>
       <div
@@ -26,7 +26,11 @@ const ShareBoardModal = (props) => {
           }
         >
           <p>Share Board</p>
-          <button type="button" className={classes.closeBtn} onClick={closeShareBoard}>
+          <button
+            type="button"
+            className={classes.closeBtn}
+            onClick={closeShareBoard}
+          >
             <HiX />
           </button>
         </div>
