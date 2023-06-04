@@ -74,6 +74,9 @@ const SideBar = (props) => {
             <TbLayoutBoardSplit className={classes.boardIcon} />
             <p>+{hiddenSidebar ? "":"Create New Board"}</p>
           </div>
+          <div>
+
+          </div>
         </div>
       </div>
       <div>

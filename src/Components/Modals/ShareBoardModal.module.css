@@ -19,33 +19,37 @@
   }
   .modal.dark {
     background-color: #2c2c38;
+    color: white;
   }
   .modal.light {
     background-color: #e9f0fa;
     color: black;
   }
-  .title {
-    position: relative;
-    font-size: 22px;
+  .titleContainer {
     display: flex;
-    justify-content: center;
-    height: 50px;
-    justify-content:space-between;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 20px 20px 20px;
   }
-  .title.light {
+  .titleContainer .light {
     color: black;
   }
-  .title.dark {
+  .titleContainer .dark {
     color: rgb(209, 209, 209);
   }
-  .options{
+  .closeBtn {
     background: none;
-    color: grey;
-    height: 35px;
+    height: 30px;
+    width: 10%;
+    color: #868d9d;
+    font-size: 20px;
+    padding: 0;
+    margin-top: 5px;
     border: none;
-    font-size: 34px;
+  }
+  .closeBtn:hover{
     cursor: pointer;
-}
+  }
   .input {
     height: 30px;
     width: 80%;

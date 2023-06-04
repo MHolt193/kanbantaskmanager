@@ -26,6 +26,8 @@ const AddTaskBar = (props) => {
     handleLightDark,
     darkMode,
     hiddenSidebar,
+    setViewShareBoard,
+    viewShareBoard,
   } = props;
 
   const [optionsMenu, setOptionsMenu] = useState(false);
@@ -106,6 +108,8 @@ const AddTaskBar = (props) => {
             darkMode={darkMode}
             handleLightDark={handleLightDark}
             isMobile={isMobile}
+            setViewShareBoard={setViewShareBoard}
+            viewShareBoard={viewShareBoard}
           />
         )}
       </div>

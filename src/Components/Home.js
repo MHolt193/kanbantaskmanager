@@ -21,8 +21,7 @@ const Home = () => {
   const [taskList, setTaskList] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
-  const [viewShareBoard, setViewShareBoard] = useState(true);
-
+  const [viewShareBoard, setViewShareBoard] = useState(false);
 
   //Mobile state
   const [isMobile, setIsMobile] = useState(false);
@@ -114,9 +113,13 @@ const Home = () => {
     }
   };
 
-  const handleHideSidebar = () =>{
+  const handleHideSidebar = () => {
     setHiddenSidebar((prev) => !prev);
-  }
+  };
+  const closeShareBoard = () => {
+    setViewShareBoard(false);
+  };
+  
   return (
     <>
       {newBoardModal && (
@@ -146,7 +149,12 @@ const Home = () => {
           darkMode={darkMode}
         />
       )}
-      {viewShareBoard && <ShareBoardModal/>}
+      {viewShareBoard && (
+        <ShareBoardModal
+          darkMode={darkMode}
+          closeShareBoard={closeShareBoard}
+        />
+      )}
       <SideBar
         addBoardsHandler={addBoardsHandler}
         selectBoardHandler={selectBoardHandler}
@@ -173,6 +181,8 @@ const Home = () => {
         isMobile={isMobile}
         darkMode={darkMode}
         hiddenSidebar={hiddenSidebar}
+        setViewShareBoard={setViewShareBoard}
+        viewShareBoard={viewShareBoard}
       />
       {selectedBoardId.length > 0 && (
         <TaskView

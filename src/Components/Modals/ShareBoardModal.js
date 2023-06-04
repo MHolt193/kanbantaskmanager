@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BsSearch } from "react-icons/bs";
-import { HiPlus, HiDotsVertical } from "react-icons/hi";
+import { HiPlus, HiX } from "react-icons/hi";
 import classes from "./ShareBoardModal.module.css";
 
 const ShareBoardModal = (props) => {
   const [usersToInvite, setUsersToInvite] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
+  const {closeShareBoard} = props;
   return (
     <div className={classes.modalContainer}>
       <div
@@ -20,13 +21,13 @@ const ShareBoardModal = (props) => {
         <div
           className={
             props.darkMode
-              ? `${classes.title} ${classes.dark}`
-              : `${classes.title} ${classes.light}`
+              ? `${classes.titleContainer} ${classes.dark}`
+              : `${classes.titleContainer} ${classes.light}`
           }
         >
           <p>Share Board</p>
-          <button type="button" className={classes.options}>
-            <HiDotsVertical />
+          <button type="button" className={classes.closeBtn} onClick={closeShareBoard}>
+            <HiX />
           </button>
         </div>
         <form>
