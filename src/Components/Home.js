@@ -153,6 +153,8 @@ const Home = () => {
         <ShareBoardModal
           darkMode={darkMode}
           closeShareBoard={closeShareBoard}
+          selectedBoardId={selectedBoardId}
+          selectedBoard={selectedBoard}
         />
       )}
       <SideBar

@@ -6,9 +6,13 @@ import classes from "./ShareBoardModal.module.css";
 
 const ShareBoardModal = (props) => {
   const [usersToInvite, setUsersToInvite] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState([{name: "Michael Holt", id: "userid"}]);
 
-  const { closeShareBoard } = props;
+  const { closeShareBoard, selectedBoard, selectedBoardId } = props;
+
+  const addInviteHandler = (e) =>{
+    setUsersToInvite([{name: e.target.value, id: e.target.id}])
+  }
   return (
     <div className={classes.modalContainer}>
       <div
@@ -56,7 +60,7 @@ const ShareBoardModal = (props) => {
                 return (
                   <li>
                     {item.name}
-                    <button type="button" id="add">
+                    <button type="button" value={item.name} id={item.id} onClick={addInviteHandler}>
                       <HiPlus />
                     </button>
                   </li>
