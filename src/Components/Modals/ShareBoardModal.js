@@ -11,7 +11,8 @@ const ShareBoardModal = (props) => {
   const { closeShareBoard, selectedBoard, selectedBoardId } = props;
 
   const addInviteHandler = (e) =>{
-    setUsersToInvite([{name: e.target.value, id: e.target.id}])
+    setUsersToInvite([{name: e.target.parentElement.innerText, id: e.target.parentElement.id}])
+    console.log(e.target)
   }
   return (
     <div className={classes.modalContainer}>
