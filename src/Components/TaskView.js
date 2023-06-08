@@ -74,6 +74,9 @@ const TaskView = (props) => {
               subtasks={task.subtasks}
               onClick={viewTaskHandler}
               darkMode={darkMode}
+              taskColumn="Todo"
+              createdAt={task.createdAt}
+              updatedAt={task.updatedAt}
             />
           );
         })}
@@ -93,6 +96,9 @@ const TaskView = (props) => {
               subtasks={task.subtasks}
               onClick={viewTaskHandler}
               darkMode={darkMode}
+              taskColumn="Doing"
+              createdAt={task.createdAt}
+              updatedAt={task.updatedAt}
             />
           );
         })}
@@ -111,6 +117,9 @@ const TaskView = (props) => {
               subtasks={task.subtasks}
               onClick={viewTaskHandler}
               darkMode={darkMode}
+              taskColumn="Done"
+              createdAt={task.createdAt}
+              updatedAt={task.updatedAt}
             />
           );
         })}

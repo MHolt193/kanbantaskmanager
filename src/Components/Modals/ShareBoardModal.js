@@ -6,14 +6,27 @@ import classes from "./ShareBoardModal.module.css";
 
 const ShareBoardModal = (props) => {
   const [usersToInvite, setUsersToInvite] = useState([]);
-  const [searchResult, setSearchResult] = useState([{name: "Michael Holt", id: "userid"}]);
+  const [searchResult, setSearchResult] = useState([
+    { name: "Michael Holt", id: "userid" },
+    { name: "Dakota Holt", id: "userid1" },
+  ]);
 
   const { closeShareBoard, selectedBoard, selectedBoardId } = props;
 
-  const addInviteHandler = (e) =>{
-    setUsersToInvite([{name: e.target.parentElement.innerText, id: e.target.parentElement.id}])
-    console.log(e.target)
-  }
+  const addInviteHandler = (e) => {
+    if (
+      usersToInvite.includes(
+        usersToInvite.find((user) => user.name === e.currentTarget.value)
+      )
+    ) {
+      setUsersToInvite((prev) => prev);
+    } else {
+      setUsersToInvite([
+        ...usersToInvite,
+        { name: e.currentTarget.value, id: e.currentTarget.id },
+      ]);
+    }
+  };
   return (
     <div className={classes.modalContainer}>
       <div
@@ -61,7 +74,12 @@ const ShareBoardModal = (props) => {
                 return (
                   <li>
                     {item.name}
-                    <button type="button" value={item.name} id={item.id} onClick={addInviteHandler}>
+                    <button
+                      type="button"
+                      value={item.name}
+                      id={item.id}
+                      onClick={addInviteHandler}
+                    >
                       <HiPlus />
                     </button>
                   </li>
