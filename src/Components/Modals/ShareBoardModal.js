@@ -7,6 +7,7 @@ import classes from "./ShareBoardModal.module.css";
 const ShareBoardModal = (props) => {
   const [usersToInvite, setUsersToInvite] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
+  const [searchError, setSearchError] = useState("");
 
   const { closeShareBoard, selectedBoard, selectedBoardId } = props;
 
@@ -23,24 +24,31 @@ const ShareBoardModal = (props) => {
         setSearchResult(data.users);
       })
       .catch((error) => {
-        console.log(error);
+        setSearchError(error.response.data.message);
       });
   };
 
   const addInviteHandler = (e) => {
     if (
-      usersToInvite.includes(
+      !usersToInvite.includes(
         usersToInvite.find((user) => user.name === e.currentTarget.value)
       )
     ) {
-      setUsersToInvite((prev) => prev);
-    } else {
       setUsersToInvite([
         ...usersToInvite,
         { name: e.currentTarget.value, id: e.currentTarget.id },
       ]);
     }
   };
+
+  const sendInvitesHandler = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = {
+      users: usersToInvite,
+    };
+  };
+
   return (
     <div className={classes.modalContainer}>
       <div
@@ -84,22 +92,24 @@ const ShareBoardModal = (props) => {
         <div>
           <p>search results</p>
           <ul>
-            {searchResult.length !== 0 &&
-              searchResult.map((item) => {
-                return (
-                  <li>
-                    {item.name}
-                    <button
-                      type="button"
-                      value={item.name}
-                      id={item.id}
-                      onClick={addInviteHandler}
-                    >
-                      <HiPlus />
-                    </button>
-                  </li>
-                );
-              })}
+            {searchResult.length !== 0
+              ? searchResult.map((item) => {
+                  return (
+                    <li>
+                      {item.name}
+                      <button
+                        type="button"
+                        id={item._id}
+                        value={item.name}
+                        onClick={addInviteHandler}
+                      >
+                        <HiPlus />
+                      </button>
+                    </li>
+                  );
+                })
+              : searchError !== "" &&
+                searchResult.length === 0 && <li>{searchError}</li>}
           </ul>
         </div>
         <form>
