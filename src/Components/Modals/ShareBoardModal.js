@@ -6,12 +6,26 @@ import classes from "./ShareBoardModal.module.css";
 
 const ShareBoardModal = (props) => {
   const [usersToInvite, setUsersToInvite] = useState([]);
-  const [searchResult, setSearchResult] = useState([
-    { name: "Michael Holt", id: "userid" },
-    { name: "Dakota Holt", id: "userid1" },
-  ]);
+  const [searchResult, setSearchResult] = useState([]);
 
   const { closeShareBoard, selectedBoard, selectedBoardId } = props;
+
+  const searchUsersHandler = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = {
+      name: form.search.value,
+    };
+    axios
+      .post("http://192.168.0.10:5000/api/users/search", formData)
+      .then((response) => {
+        let data = response.data;
+        setSearchResult(data.users);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const addInviteHandler = (e) => {
     if (
@@ -52,17 +66,18 @@ const ShareBoardModal = (props) => {
             <HiX />
           </button>
         </div>
-        <form>
+        <form onSubmit={searchUsersHandler}>
           <input
             type="text"
             id="searchBar"
+            name="search"
             className={
               props.darkMode
                 ? `${classes.input} ${classes.dark}`
                 : `${classes.input} ${classes.light}`
             }
           />
-          <button type="button" id="searchButton">
+          <button type="submit" id="searchButton">
             <BsSearch />
           </button>
         </form>
