@@ -10,6 +10,8 @@ const ShareBoardModal = (props) => {
   const [searchError, setSearchError] = useState("");
 
   const { closeShareBoard, selectedBoard, selectedBoardId } = props;
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
 
   const searchUsersHandler = (e) => {
     e.preventDefault();
@@ -18,7 +20,11 @@ const ShareBoardModal = (props) => {
       name: form.search.value,
     };
     axios
-      .post("http://192.168.0.10:5000/api/users/search", formData)
+      .post("http://192.168.0.10:5000/api/users/search", formData, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
       .then((response) => {
         let data = response.data;
         setSearchResult(data.users);
@@ -36,17 +42,35 @@ const ShareBoardModal = (props) => {
     ) {
       setUsersToInvite([
         ...usersToInvite,
-        { name: e.currentTarget.value, id: e.currentTarget.id },
+        {
+          name: e.currentTarget.value,
+          id: e.currentTarget.id,
+          status: "invited",
+          board: selectedBoardId,
+          boardName: selectedBoard,
+          invitedBy: JSON.parse(user)
+        },
       ]);
     }
   };
 
   const sendInvitesHandler = (e) => {
     e.preventDefault();
-    const form = e.target;
     const formData = {
       users: usersToInvite,
     };
+    axios
+      .post("http://192.168.0.10:5000/api/users/invite", formData, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -112,13 +136,14 @@ const ShareBoardModal = (props) => {
                 searchResult.length === 0 && <li>{searchError}</li>}
           </ul>
         </div>
-        <form>
+        <form onSubmit={sendInvitesHandler}>
           <p>Users To Invite</p>
           <ul>
             {usersToInvite.map((user) => {
               return <li>{user.name}</li>;
             })}
           </ul>
+          <button type="submit">Send Invites</button>
         </form>
       </div>
     </div>
