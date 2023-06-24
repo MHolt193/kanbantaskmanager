@@ -3,7 +3,7 @@ import Icon from "./Icon";
 import classes from "./Notifications.module.css";
 import axios from "axios";
 
-const Notifications = () => {
+const Notifications = (props) => {
   //State
   const [dropdownActive, setDropdownActive] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -11,6 +11,7 @@ const Notifications = () => {
   const userId = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
+  //Pull notifications from backend
   useEffect(() => {
     axios
       .get(`http://192.168.0.10:5000/api/users/${userId}/notifications`, {
@@ -21,9 +22,7 @@ const Notifications = () => {
       .then((response) => {
         let data = response.data;
         setNotifications(data.invites);
-        console.log(data.invites);
       });
-    console.log(userId);
   }, [token, userId]);
 
   //Handlers
@@ -51,7 +50,7 @@ const Notifications = () => {
         <ul>
           {notifications.map((notification) => {
             return (
-              <li>{`You were invited to work on ${notification.boardName} by ${notification.invitedBy}`}<button type="button">Accept</button> <button type="button">Decline</button></li>
+              <li className={classes.notification}>{`You were invited to work on ${notification.boardName} by ${notification.invitedBy}`}<div className={classes.btnContainer}><button type="button">Accept</button> <button type="button">Decline</button></div></li>
             );
           })}
         </ul>

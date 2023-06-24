@@ -3,6 +3,7 @@
   width: 45px;
   margin-right: 20px;
   color: #656565;
+  cursor: pointer;
 }
 .icon svg{
   height: 45px;
@@ -24,11 +25,18 @@
 }
 
 .active {
-  height: 150px;
-  overflow: hidden;
+  height: 200px;
+  overflow-y: scroll;
 }
 .notificationContainer{
   position: relative;
+}
+.notification{
+  width: 100%;
+  list-style: none;
+  padding: 0px;
+  margin-left: -20px;
+
 }
 .notificationCount{
   background-color: red;
@@ -44,4 +52,10 @@
   position: absolute;
   top: 0;
   left: 20px;
+}
+@media screen and (max-width: 720px) {
+  .dropdown{
+    right: 0px;
+  }
+  
 }
