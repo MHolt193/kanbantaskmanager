@@ -24,7 +24,6 @@ const Signup = (props) => {
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        console.log(error);
         setErrorMessage(error.response.data);
       });
   };

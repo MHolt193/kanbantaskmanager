@@ -8,6 +8,7 @@ import {
   HiDotsVertical,
   HiChevronDown,
 } from "react-icons/hi";
+import Notifications from "./Notification/Notifications"
 
 const AddTaskBar = (props) => {
   const {
@@ -25,6 +26,8 @@ const AddTaskBar = (props) => {
     handleLightDark,
     darkMode,
     hiddenSidebar,
+    setViewShareBoard,
+    viewShareBoard,
   } = props;
 
   const [optionsMenu, setOptionsMenu] = useState(false);
@@ -77,6 +80,7 @@ const AddTaskBar = (props) => {
         )}
       </div>
       <div className={classes.btnContainer}>
+      <Notifications/>
         <button onClick={addTaskHandler} className={classes.newTaskBtn}>
           {isMobile ? (
             <HiPlus style={{ fontSize: "20px" }} />
@@ -104,6 +108,8 @@ const AddTaskBar = (props) => {
             darkMode={darkMode}
             handleLightDark={handleLightDark}
             isMobile={isMobile}
+            setViewShareBoard={setViewShareBoard}
+            viewShareBoard={viewShareBoard}
           />
         )}
       </div>

@@ -19,7 +19,6 @@ const BoardModal = (props) => {
         },
       })
       .then((response) => {
-        console.log(response);
         setBoards((prev) => [...prev, response.data]);
         if (response.status === 200) {
           setNewBoardModal((prev) => !prev);

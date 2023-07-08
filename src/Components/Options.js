@@ -14,26 +14,36 @@ const Options = (props) => {
     logOutHandler,
     isMobile,
     handleLightDark,
-    optionsMenu
+    optionsMenu,
+    setViewShareBoard,
+    viewShareBoard
   } = props;
 
   const token = localStorage.getItem("token");
   const deleteBoardhandler = () => {
     axios
-      .delete(`https://mhkanbanbackend.onrender.com/api/boards/${selectedBoardId}`, {
-        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
-      })
+      .delete(
+        `https://mhkanbanbackend.onrender.com/api/boards/${selectedBoardId}`,
+        {
+          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+          data: {userId: JSON.parse(localStorage.getItem("user"))}
+        }
+      )
       .then((response) => {
-        console.log(response);
-        setBoards(response.data);
-        setSelectedBoard(response.data[0].title);
-        setSelectedBoardId(response.data[0]._id);
+        setBoards([...response.data.boards, ...response.data.sharedBoards]);
+        setSelectedBoard(response.data.boards[0].title);
+        setSelectedBoardId(response.data.boards[0]._id);
       })
       .catch((error) => {
         console.error(error);
       });
     setOptionsMenu(false);
   };
+  
+  const openShareBoard = () =>{
+    setViewShareBoard(!viewShareBoard)
+    setOptionsMenu(false)
+  }
 
   return (
     <ul
@@ -49,7 +59,21 @@ const Options = (props) => {
       >
         Logout
       </li>
-      {isMobile && <li><LightDarkSwitch darkMode={darkMode} handleLightDark={handleLightDark} /></li>}
+      {isMobile && (
+        <li>
+          <LightDarkSwitch
+            darkMode={darkMode}
+            handleLightDark={handleLightDark}
+          />
+        </li>
+      )}
+      <li onClick={openShareBoard}
+        className={`${classes.menuOption} ${
+          darkMode ? classes.dark : classes.light
+        }`}
+      >
+        Share Current Board
+      </li>
       <li
         onClick={deleteBoardhandler}
         className={`${classes.delete} ${

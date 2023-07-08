@@ -7,6 +7,7 @@ import axios from "axios";
 import BoardModal from "./Modals/BoardModal";
 import AddTaskModal from "./Modals/AddTaskModal";
 import ViewTaskModal from "./Modals/ViewTaskModal";
+import ShareBoardModal from "./Modals/ShareBoardModal";
 
 const Home = () => {
   //STATE
@@ -20,7 +21,7 @@ const Home = () => {
   const [taskList, setTaskList] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
-
+  const [viewShareBoard, setViewShareBoard] = useState(false);
 
   //Mobile state
   const [isMobile, setIsMobile] = useState(false);
@@ -67,9 +68,10 @@ const Home = () => {
           },
         })
         .then((response) => {
-          setBoards(response.data);
-          setSelectedBoard(response.data[0].title);
-          setSelectedBoardId(response.data[0]._id);
+          console.log(response.data)
+          setBoards([...response.data.boards, ...response.data.sharedBoards]);
+          setSelectedBoard(response.data.boards[0].title);
+          setSelectedBoardId(response.data.boards[0]._id);
         })
         .catch((error) => {
           console.log(error);
@@ -112,9 +114,13 @@ const Home = () => {
     }
   };
 
-  const handleHideSidebar = () =>{
+  const handleHideSidebar = () => {
     setHiddenSidebar((prev) => !prev);
-  }
+  };
+  const closeShareBoard = () => {
+    setViewShareBoard(false);
+  };
+  
   return (
     <>
       {newBoardModal && (
@@ -144,6 +150,14 @@ const Home = () => {
           darkMode={darkMode}
         />
       )}
+      {viewShareBoard && (
+        <ShareBoardModal
+          darkMode={darkMode}
+          closeShareBoard={closeShareBoard}
+          selectedBoardId={selectedBoardId}
+          selectedBoard={selectedBoard}
+        />
+      )}
       <SideBar
         addBoardsHandler={addBoardsHandler}
         selectBoardHandler={selectBoardHandler}
@@ -170,6 +184,8 @@ const Home = () => {
         isMobile={isMobile}
         darkMode={darkMode}
         hiddenSidebar={hiddenSidebar}
+        setViewShareBoard={setViewShareBoard}
+        viewShareBoard={viewShareBoard}
       />
       {selectedBoardId.length > 0 && (
         <TaskView
