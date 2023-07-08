@@ -26,13 +26,13 @@ const Options = (props) => {
         `https://mhkanbanbackend.onrender.com/api/boards/${selectedBoardId}`,
         {
           headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+          data: {userId: JSON.parse(localStorage.getItem("user"))}
         }
       )
       .then((response) => {
-        console.log(response);
-        setBoards(response.data);
-        setSelectedBoard(response.data[0].title);
-        setSelectedBoardId(response.data[0]._id);
+        setBoards([...response.data.boards, ...response.data.sharedBoards]);
+        setSelectedBoard(response.data.boards[0].title);
+        setSelectedBoardId(response.data.boards[0]._id);
       })
       .catch((error) => {
         console.error(error);
