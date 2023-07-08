@@ -16,7 +16,7 @@ const ViewTaskOptions = (props) => {
   };
 
   const deleteTaskHandler = async () => {
-    axios.delete(`https://kanbantaskmanager.herokuapp.com/api/boards/list/${selectedTaskId}`, {
+    axios.delete(`https://mhkanbanbackend.onrender.com/api/boards/list/${selectedTaskId}`, {
       headers: { Authorization: `Bearer ${JSON.parse(token)}` },
     }).then(()=>{
         setTaskList((prev)=>{

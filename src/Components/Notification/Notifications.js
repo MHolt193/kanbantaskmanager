@@ -14,7 +14,7 @@ const Notifications = (props) => {
   //Pull notifications from backend
   useEffect(() => {
     axios
-      .get(`http://192.168.0.10:5000/api/users/${userId}/notifications`, {
+      .get(`https://mhkanbanbackend.onrender.com/api/users/${userId}/notifications`, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
@@ -45,7 +45,7 @@ const Notifications = (props) => {
     };
     axios
       .post(
-        `http://192.168.0.10:5000/api/users/${userId}/notifications`,
+        `https://mhkanbanbackend.onrender.com/api/users/${userId}/notifications`,
         formData,
         {
           headers: {

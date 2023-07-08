@@ -20,7 +20,7 @@ const ShareBoardModal = (props) => {
       name: form.search.value,
     };
     axios
-      .post("http://192.168.0.10:5000/api/users/search", formData, {
+      .post("https://mhkanbanbackend.onrender.com/api/users/search", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
@@ -60,7 +60,7 @@ const ShareBoardModal = (props) => {
       users: usersToInvite,
     };
     axios
-      .post("http://192.168.0.10:5000/api/users/invite", formData, {
+      .post("https://mhkanbanbackend.onrender.com/api/users/invite", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },

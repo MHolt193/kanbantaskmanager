@@ -68,9 +68,10 @@ const Home = () => {
           },
         })
         .then((response) => {
-          setBoards(response.data);
-          setSelectedBoard(response.data[0].title);
-          setSelectedBoardId(response.data[0]._id);
+          console.log(response.data)
+          setBoards([...response.data.boards, ...response.data.sharedBoards]);
+          setSelectedBoard(response.data.boards[0].title);
+          setSelectedBoardId(response.data.boards[0]._id);
         })
         .catch((error) => {
           console.log(error);
