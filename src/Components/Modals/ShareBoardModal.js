@@ -98,18 +98,19 @@ const ShareBoardModal = (props) => {
             <HiX />
           </button>
         </div>
-        <form onSubmit={searchUsersHandler}>
+        <form onSubmit={searchUsersHandler} className={classes.form}>
           <input
             type="text"
             id="searchBar"
             name="search"
+            placeholder="Name"
             className={
               props.darkMode
                 ? `${classes.input} ${classes.dark}`
                 : `${classes.input} ${classes.light}`
             }
           />
-          <button type="submit" id="searchButton">
+          <button type="submit" id="searchButton" className={classes.searchBtn}>
             <BsSearch />
           </button>
         </form>
@@ -136,14 +137,14 @@ const ShareBoardModal = (props) => {
                 searchResult.length === 0 && <li>{searchError}</li>}
           </ul>
         </div>
-        <form onSubmit={sendInvitesHandler}>
-          <p>Users To Invite</p>
-          <ul>
+        <form onSubmit={sendInvitesHandler} className={classes.inviteList}>
+          <label for="inviteList">Users To Invite</label>
+          <ul id="invitelist">
             {usersToInvite.map((user) => {
               return <li>{user.name}</li>;
             })}
           </ul>
-          <button type="submit">Send Invites</button>
+          <button type="submit" className={classes.submitBtn}>Send Invites</button>
         </form>
       </div>
     </div>
